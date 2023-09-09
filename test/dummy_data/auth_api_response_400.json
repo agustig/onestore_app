@@ -1,0 +1,10 @@
+{
+  "status": 400,
+  "message": {
+    "email": ["The email field must be a valid email address."],
+    "password": [
+      "The password field must be at least 8 characters.",
+      "The password field confirmation does not match."
+    ]
+  }
+}

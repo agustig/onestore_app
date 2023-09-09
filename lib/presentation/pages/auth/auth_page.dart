@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_store_fic7/pages/auth/widgets/sign_in_widget.dart';
-import 'package:flutter_store_fic7/pages/auth/widgets/sign_up_widget.dart';
+import 'package:flutter_store_fic7/presentation/pages/auth/widgets/sign_in_widget.dart';
+import 'package:flutter_store_fic7/presentation/pages/auth/widgets/sign_up_widget.dart';
 import 'package:flutter_store_fic7/utils/color_resource.dart';
 import 'package:flutter_store_fic7/utils/custom_theme.dart';
 import 'package:flutter_store_fic7/utils/dimensions.dart';

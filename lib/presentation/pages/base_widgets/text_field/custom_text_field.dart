@@ -23,6 +23,7 @@ class CustomTextField extends StatelessWidget {
   final bool isBorder;
   final TextAlign? textAlign;
   final bool isEnable;
+  final String? errorText;
 
   const CustomTextField({
     super.key,
@@ -38,6 +39,7 @@ class CustomTextField extends StatelessWidget {
     this.isBorder = false,
     this.textAlign,
     this.isEnable = true,
+    this.errorText,
   });
 
   @override
@@ -97,6 +99,7 @@ class CustomTextField extends StatelessWidget {
           ),
           errorStyle: const TextStyle(height: 1.5),
           border: InputBorder.none,
+          errorText: errorText,
         ),
       ),
     );

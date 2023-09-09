@@ -7,6 +7,7 @@ class PasswordTextField extends StatefulWidget {
   final FocusNode? focusNode;
   final FocusNode? nextNode;
   final TextInputAction? textInputAction;
+  final String? errorText;
 
   const PasswordTextField({
     super.key,
@@ -15,6 +16,7 @@ class PasswordTextField extends StatefulWidget {
     this.focusNode,
     this.nextNode,
     this.textInputAction,
+    this.errorText,
   });
 
   @override
@@ -22,12 +24,12 @@ class PasswordTextField extends StatefulWidget {
 }
 
 class _PasswordTextFieldState extends State<PasswordTextField> {
-  final _obscureText = true;
+  var obscureText = true;
 
   // Toggle to show password status
   void _toggle() {
     setState(() {
-      _obscureText != _obscureText;
+      obscureText = !obscureText;
     });
   }
 
@@ -52,21 +54,20 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
         child: TextFormField(
           cursorColor: Theme.of(context).primaryColor,
           controller: widget.controller,
-          obscureText: _obscureText,
+          obscureText: obscureText,
           focusNode: widget.focusNode,
           textInputAction: widget.textInputAction ?? TextInputAction.next,
-          onFieldSubmitted: (value) {
+          onFieldSubmitted: (_) {
             setState(() {
               widget.textInputAction == TextInputAction.done
                   ? FocusScope.of(context).consumeKeyboardToken()
                   : FocusScope.of(context).requestFocus(widget.nextNode);
             });
           },
-          validator: (value) => null,
           decoration: InputDecoration(
             suffixIcon: IconButton(
               icon: Icon(
-                _obscureText ? Icons.visibility_off : Icons.visibility,
+                obscureText ? Icons.visibility_off : Icons.visibility,
               ),
               onPressed: _toggle,
             ),
@@ -87,6 +88,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
               color: Theme.of(context).hintColor,
             ),
             border: InputBorder.none,
+            errorText: widget.errorText,
           ),
         ),
       ),
