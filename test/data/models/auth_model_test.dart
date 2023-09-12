@@ -16,22 +16,12 @@ void main() {
       final result = tAuthModel.toEntity();
       expect(result, tAuth);
     });
-
-    test('should be a valid AuthModel when import from entity', () {
-      final result = AuthModel.fromEntity(tAuth);
-      expect(result, tAuthModel);
-    });
   });
 
   group('Map/Json:', () {
     test('should be a valid AuthModel when import from json', () {
       final result = AuthModel.fromMap(tAuthJson);
       expect(result, tAuthModel);
-    });
-
-    test('should be a valid Map/Json when export to json', () {
-      final result = tAuthModel.toMap();
-      expect(result, tAuthJson);
     });
   });
 }

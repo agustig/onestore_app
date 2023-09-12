@@ -10,12 +10,12 @@ void main() {
   late final AuthLogin usecase;
   late final MockAuthRepository mockRepository;
 
+  const tAuth = testAuth;
+
   setUpAll(() {
     mockRepository = MockAuthRepository();
     usecase = AuthLogin(mockRepository);
   });
-
-  const tAuth = testAuth;
 
   mockRepositoryCaller() => mockRepository.login(
         email: 'marlee.ledner@example.net',
@@ -27,7 +27,8 @@ void main() {
         password: 'password',
       );
 
-  test('should be a valid Auth when execute is successfully', () async {
+  test('should be a return Auth entity  when execute is successfully',
+      () async {
     // Arrange
     when(() => mockRepositoryCaller())
         .thenAnswer((_) async => const Right(tAuth));

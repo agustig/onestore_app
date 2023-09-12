@@ -147,4 +147,38 @@ void main() {
       },
     );
   });
+
+  group('Logout function:', () {
+    final tAuthToken = testAuthModel.token;
+
+    dataSourceCaller() => dataSource.logout(tAuthToken);
+
+    mockApiCaller() => mockClient.post(
+          Uri.parse(baseApi.logoutPath),
+          headers: baseApi.authyHeaders(tAuthToken),
+        );
+
+    test('should return true when the response code is 200', () async {
+      // Arrange
+      when(() => mockApiCaller())
+          .thenAnswer((_) async => http.Response('Logout success', 200));
+      // Act
+      final call = await dataSourceCaller();
+      // Assert
+      expect(call, true);
+    });
+
+    test(
+      'should throw a ServerException when the response code is 404 or other',
+      () async {
+        // arrange
+        when(() => mockApiCaller()).thenAnswer(
+            (_) async => http.Response('{"message": "Not Found"}', 404));
+        // act
+        final call = dataSourceCaller();
+        // assert
+        expect(() => call, throwsA(isA<ServerException>()));
+      },
+    );
+  });
 }

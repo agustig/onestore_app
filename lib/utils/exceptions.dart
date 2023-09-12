@@ -1,5 +1,11 @@
 class ServerException implements Exception {}
 
+class DatabaseException implements Exception {
+  final String message;
+
+  DatabaseException(this.message);
+}
+
 class ValidatorException implements Exception {
   final Map<String, List<String>> _messages;
 

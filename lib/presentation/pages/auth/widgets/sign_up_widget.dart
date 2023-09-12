@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_store_fic7/presentation/bloc/register_bloc.dart';
+import 'package:flutter_store_fic7/presentation/bloc/auth_bloc.dart';
 import 'package:flutter_store_fic7/presentation/pages/base_widgets/buttons/custom_button.dart';
 import 'package:flutter_store_fic7/presentation/pages/base_widgets/text_field/custom_text_field.dart';
 import 'package:flutter_store_fic7/presentation/pages/base_widgets/text_field/password_text_field.dart';
@@ -31,8 +31,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
   void addUser() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      context.read<RegisterBloc>().add(
-            RegisterEvent.execute(
+      context.read<AuthBloc>().add(
+            AuthEvent.register(
               name: _nameController.text,
               email: _emailController.text,
               password: _passwordController.text,
@@ -71,7 +71,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
       children: [
         Form(
           key: _formKey,
-          child: BlocConsumer<RegisterBloc, RegisterState>(
+          child: BlocConsumer<AuthBloc, AuthState>(
             listener: (context, state) {
               state.maybeWhen(
                 orElse: () {},
@@ -85,7 +85,13 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                     );
                   }
                 },
-                loaded: (authData) {
+                loaded: (authMessage) =>
+                    ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(authMessage),
+                  ),
+                ),
+                authenticated: (authToken) {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
@@ -96,9 +102,8 @@ class _SignUpWidgetState extends State<SignUpWidget> {
               );
             },
             builder: (context, state) {
-              final validatorMessages = state.maybeWhen(
+              final validatorMessages = state.whenOrNull(
                 error: (message, messages) => messages,
-                orElse: () => null,
               );
 
               return Column(
@@ -107,16 +112,14 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                     margin: const EdgeInsets.symmetric(
                       horizontal: Dimensions.marginSizeDefault,
                     ),
-                    child: Expanded(
-                      child: CustomTextField(
-                        hintText: 'Name',
-                        textInputType: TextInputType.name,
-                        focusNode: _nameFocus,
-                        nextNode: _emailFocus,
-                        capitalization: TextCapitalization.words,
-                        controller: _nameController,
-                        errorText: validatorMessages?['name']?[0],
-                      ),
+                    child: CustomTextField(
+                      hintText: 'Name',
+                      textInputType: TextInputType.name,
+                      focusNode: _nameFocus,
+                      nextNode: _emailFocus,
+                      capitalization: TextCapitalization.words,
+                      controller: _nameController,
+                      errorText: validatorMessages?['name']?[0],
                     ),
                   ),
                   Container(
@@ -125,15 +128,13 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                       left: Dimensions.marginSizeDefault,
                       right: Dimensions.marginSizeDefault,
                     ),
-                    child: Expanded(
-                      child: CustomTextField(
-                        hintText: 'Email',
-                        textInputType: TextInputType.emailAddress,
-                        focusNode: _emailFocus,
-                        nextNode: _passwordFocus,
-                        controller: _emailController,
-                        errorText: validatorMessages?['email']?[0],
-                      ),
+                    child: CustomTextField(
+                      hintText: 'Email',
+                      textInputType: TextInputType.emailAddress,
+                      focusNode: _emailFocus,
+                      nextNode: _passwordFocus,
+                      controller: _emailController,
+                      errorText: validatorMessages?['email']?[0],
                     ),
                   ),
                   Container(
@@ -142,15 +143,13 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                       left: Dimensions.marginSizeDefault,
                       right: Dimensions.marginSizeDefault,
                     ),
-                    child: Expanded(
-                      child: PasswordTextField(
-                        hintText: 'Password',
-                        focusNode: _passwordFocus,
-                        nextNode: _passwordConfirmationFocus,
-                        controller: _passwordController,
-                        textInputAction: TextInputAction.next,
-                        errorText: validatorMessages?['password']?[0],
-                      ),
+                    child: PasswordTextField(
+                      hintText: 'Password',
+                      focusNode: _passwordFocus,
+                      nextNode: _passwordConfirmationFocus,
+                      controller: _passwordController,
+                      textInputAction: TextInputAction.next,
+                      errorText: validatorMessages?['password']?[0],
                     ),
                   ),
                   Container(
@@ -159,14 +158,12 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                       left: Dimensions.marginSizeDefault,
                       right: Dimensions.marginSizeDefault,
                     ),
-                    child: Expanded(
-                      child: PasswordTextField(
-                        hintText: 'Password Confirmation',
-                        focusNode: _passwordConfirmationFocus,
-                        controller: _passwordConfirmationController,
-                        textInputAction: TextInputAction.done,
-                        errorText: validatorMessages?['password']?[1],
-                      ),
+                    child: PasswordTextField(
+                      hintText: 'Password Confirmation',
+                      focusNode: _passwordConfirmationFocus,
+                      controller: _passwordConfirmationController,
+                      textInputAction: TextInputAction.done,
+                      errorText: validatorMessages?['password_password']?[0],
                     ),
                   ),
                 ],
@@ -176,7 +173,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
         ),
         Container(
           margin: const EdgeInsets.all(Dimensions.marginSizeLarge),
-          child: BlocBuilder<RegisterBloc, RegisterState>(
+          child: BlocBuilder<AuthBloc, AuthState>(
             builder: (context, state) {
               return state.maybeWhen(
                 orElse: () => CustomButton(

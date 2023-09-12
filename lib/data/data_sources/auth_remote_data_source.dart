@@ -18,6 +18,8 @@ abstract class AuthRemoteDataSource {
     required String password,
     required String passwordConfirmation,
   });
+
+  Future<bool> logout(String authToken);
 }
 
 class AuthRemoteDataSourceImpl extends BaseApi implements AuthRemoteDataSource {
@@ -82,6 +84,20 @@ class AuthRemoteDataSourceImpl extends BaseApi implements AuthRemoteDataSource {
     } else if (request.statusCode == 400) {
       apiResponse = ApiResponseModel.fromMap(jsonDecode(request.body));
       throw ValidatorException(apiResponse.message);
+    } else {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<bool> logout(String authToken) async {
+    final request = await client.post(
+      Uri.parse(super.logoutPath),
+      headers: super.authyHeaders(authToken),
+    );
+
+    if (request.statusCode == 200) {
+      return true;
     } else {
       throw ServerException();
     }

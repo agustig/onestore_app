@@ -9,13 +9,12 @@ import '../../mock_helper.dart';
 void main() {
   late final AuthRegister usecase;
   late final MockAuthRepository mockRepository;
+  const tAuth = testAuth;
 
   setUpAll(() {
     mockRepository = MockAuthRepository();
     usecase = AuthRegister(mockRepository);
   });
-
-  const tAuth = testAuth;
 
   mockRepositoryCaller() => mockRepository.register(
         name: 'Mr. Manuela Zboncak III',
@@ -31,7 +30,7 @@ void main() {
         passwordConfirmation: 'password',
       );
 
-  test('should be a valid Auth when execute is successfully', () async {
+  test('should be a return Auth entity when execute is successfully', () async {
     // Arrange
     when(() => mockRepositoryCaller())
         .thenAnswer((_) async => const Right(tAuth));

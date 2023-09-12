@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_store_fic7/presentation/bloc/login_bloc.dart';
+import 'package:flutter_store_fic7/presentation/bloc/auth_bloc.dart';
 import 'package:flutter_store_fic7/presentation/pages/base_widgets/buttons/custom_button.dart';
 import 'package:flutter_store_fic7/presentation/pages/base_widgets/text_field/custom_text_field.dart';
 import 'package:flutter_store_fic7/presentation/pages/base_widgets/text_field/password_text_field.dart';
@@ -46,8 +46,8 @@ class _SignInWidgetState extends State<SignInWidget> {
       String email = _emailController.text.trim();
       String password = _passwordController.text.trim();
 
-      context.read<LoginBloc>().add(
-            LoginEvent.execute(email: email, password: password),
+      context.read<AuthBloc>().add(
+            AuthEvent.login(email: email, password: password),
           );
     }
   }
@@ -59,7 +59,7 @@ class _SignInWidgetState extends State<SignInWidget> {
       children: [
         Form(
           key: _fromKeyLogin,
-          child: BlocConsumer<LoginBloc, LoginState>(
+          child: BlocConsumer<AuthBloc, AuthState>(
             listener: (context, state) {
               state.maybeWhen(
                 orElse: () => null,
@@ -73,10 +73,15 @@ class _SignInWidgetState extends State<SignInWidget> {
                     );
                   }
                 },
-                loaded: (authData) => Navigator.pushReplacement(
+                loaded: (authMessage) =>
+                    ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(authMessage)),
+                ),
+                authenticated: (authData) => Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const DashboardPage()),
+                    builder: (context) => const DashboardPage(),
+                  ),
                 ),
               );
             },
@@ -156,7 +161,7 @@ class _SignInWidgetState extends State<SignInWidget> {
             right: 20.0,
             left: 20.0,
           ),
-          child: BlocBuilder<LoginBloc, LoginState>(
+          child: BlocBuilder<AuthBloc, AuthState>(
             builder: (context, state) {
               return state.maybeWhen(
                 orElse: () => CustomButton(
@@ -175,8 +180,9 @@ class _SignInWidgetState extends State<SignInWidget> {
         Center(
           child: Text(
             'OR',
-            style:
-                titilliumRegular.copyWith(fontSize: Dimensions.fontSizeDefault),
+            style: titilliumRegular.copyWith(
+              fontSize: Dimensions.fontSizeDefault,
+            ),
           ),
         ),
         GestureDetector(
@@ -188,9 +194,10 @@ class _SignInWidgetState extends State<SignInWidget> {
           ),
           child: Container(
             margin: const EdgeInsets.only(
-                left: Dimensions.marginSizeAuth,
-                right: Dimensions.marginSizeAuth,
-                top: Dimensions.marginSizeAuthSmall),
+              left: Dimensions.marginSizeAuth,
+              right: Dimensions.marginSizeAuth,
+              top: Dimensions.marginSizeAuthSmall,
+            ),
             width: double.infinity,
             height: 40,
             alignment: Alignment.center,

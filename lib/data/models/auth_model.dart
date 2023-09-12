@@ -8,6 +8,13 @@ class AuthModel extends Equatable {
 
   const AuthModel({required this.token, required this.user});
 
+  factory AuthModel.fromMap(Map<String, dynamic> map) {
+    return AuthModel(
+      token: map['auth_token'],
+      user: UserModel.fromMap(map['user'] as Map<String, dynamic>),
+    );
+  }
+
   Auth toEntity() {
     return Auth(token: token, user: user.toEntity());
   }
@@ -24,13 +31,6 @@ class AuthModel extends Equatable {
       'auth_token': token,
       'user': user.toMap(),
     };
-  }
-
-  factory AuthModel.fromMap(Map<String, dynamic> map) {
-    return AuthModel(
-      token: map['auth_token'],
-      user: UserModel.fromMap(map['user'] as Map<String, dynamic>),
-    );
   }
 
   @override
