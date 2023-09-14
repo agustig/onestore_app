@@ -42,53 +42,12 @@ void main() {
     expect(authBloc.state, const AuthState.initial());
   });
 
-  group('AuthEvent.getStatus():', () {
-    mockTokenCheckCaller() => mockAuthGetToken.execute();
-
-    const eventCaller = AuthEvent.getStatus();
-
-    blocTest<AuthBloc, AuthState>(
-      'should emit [loading, authenticated] on AuthState when execute is successfully',
-      build: () {
-        when(() => mockTokenCheckCaller())
-            .thenAnswer((_) async => Right(tAuthToken));
-        return authBloc;
-      },
-      act: (bloc) => bloc.add(eventCaller),
-      expect: () => [
-        const AuthState.loading(),
-        AuthState.authenticated(tAuthToken),
-      ],
-      verify: (_) {
-        verify(() => mockTokenCheckCaller());
-      },
-    );
-
-    blocTest<AuthBloc, AuthState>(
-      'should emit [Loading, error] on AuthState when database is error',
-      build: () {
-        when(() => mockTokenCheckCaller()).thenAnswer(
-            (_) async => const Left(DatabaseFailure('Database failure')));
-        return authBloc;
-      },
-      act: (bloc) => bloc.add(eventCaller),
-      expect: () => [
-        const AuthState.loading(),
-        const AuthState.error(message: 'Database failure'),
-      ],
-      verify: (_) {
-        verify(() => mockTokenCheckCaller());
-      },
-    );
-  });
-
   group('AuthEvent.login():', () {
     mockLoginUsecaseCaller() => mockAuthLogin.execute(
           email: 'marlee.ledner@example.net',
           password: 'password',
         );
     mockSaveTokenUsecaseCaller() => mockAuthSaveToken.execute(tAuthToken);
-    mockCheckTokenUsecaseCaller() => mockAuthGetToken.execute();
 
     const eventCaller = AuthEvent.login(
       email: 'marlee.ledner@example.net',
@@ -104,26 +63,22 @@ void main() {
     };
 
     blocTest<AuthBloc, AuthState>(
-      'should emit [loading, loaded, authenticated] on AuthState when execute is successfully',
+      'should emit [loading, loaded] on AuthState when execute is successfully',
       build: () {
         when(() => mockLoginUsecaseCaller())
             .thenAnswer((_) async => const Right(tAuth));
         when(() => mockSaveTokenUsecaseCaller())
             .thenAnswer((_) async => const Right(true));
-        when(() => mockCheckTokenUsecaseCaller())
-            .thenAnswer((_) async => Right(tAuthToken));
         return authBloc;
       },
       act: (bloc) => bloc.add(eventCaller),
       expect: () => [
         const AuthState.loading(),
         const AuthState.loaded('Login successfully'),
-        AuthState.authenticated(tAuthToken),
       ],
       verify: (_) {
         verify(() => mockLoginUsecaseCaller());
         verify(() => mockSaveTokenUsecaseCaller());
-        verify(() => mockCheckTokenUsecaseCaller());
       },
     );
 
@@ -208,7 +163,6 @@ void main() {
           passwordConfirmation: 'password',
         );
     mockSaveTokenUsecaseCaller() => mockAuthSaveToken.execute(tAuthToken);
-    mockCheckTokenUsecaseCaller() => mockAuthGetToken.execute();
 
     const eventCaller = AuthEvent.register(
       name: 'Mr. Manuela Zboncak III',
@@ -232,20 +186,16 @@ void main() {
             .thenAnswer((_) async => const Right(tAuth));
         when(() => mockSaveTokenUsecaseCaller())
             .thenAnswer((_) async => const Right(true));
-        when(() => mockCheckTokenUsecaseCaller())
-            .thenAnswer((_) async => Right(tAuthToken));
         return authBloc;
       },
       act: (bloc) => bloc.add(eventCaller),
       expect: () => [
         const AuthState.loading(),
         const AuthState.loaded('Register successfully'),
-        AuthState.authenticated(tAuthToken),
       ],
       verify: (_) {
         verify(() => mockRegisterUsecaseCaller());
         verify(() => mockSaveTokenUsecaseCaller());
-        verify(() => mockCheckTokenUsecaseCaller());
       },
     );
 
@@ -330,7 +280,7 @@ void main() {
     const eventCaller = AuthEvent.logout();
 
     blocTest<AuthBloc, AuthState>(
-      'should emit [loading, loaded, unauthenticated] on AuthState when execute is successfully',
+      'should emit [loading, loaded] on AuthState when execute is successfully',
       build: () {
         final tokenStatusResult = [tAuthToken, null];
         when(() => mockLogoutUsecaseCaller())
@@ -342,15 +292,11 @@ void main() {
         return authBloc;
       },
       act: (bloc) {
-        bloc.add(const AuthEvent.getStatus());
         bloc.add(eventCaller);
       },
       expect: () => [
         const AuthState.loading(),
-        AuthState.authenticated(tAuthToken),
-        const AuthState.loading(),
         const AuthState.loaded('Logout successfully'),
-        const AuthState.unauthenticated(),
       ],
       verify: (_) {
         verify(() => mockLogoutUsecaseCaller());
@@ -369,12 +315,9 @@ void main() {
         return authBloc;
       },
       act: (bloc) {
-        bloc.add(const AuthEvent.getStatus());
         bloc.add(eventCaller);
       },
       expect: () => [
-        const AuthState.loading(),
-        AuthState.authenticated(tAuthToken),
         const AuthState.loading(),
         const AuthState.error(message: 'Failed connect to the Network'),
       ],
@@ -394,12 +337,9 @@ void main() {
         return authBloc;
       },
       act: (bloc) {
-        bloc.add(const AuthEvent.getStatus());
         bloc.add(eventCaller);
       },
       expect: () => [
-        const AuthState.loading(),
-        AuthState.authenticated(tAuthToken),
         const AuthState.loading(),
         const AuthState.error(message: 'Server Failure'),
       ],
@@ -421,12 +361,9 @@ void main() {
         return authBloc;
       },
       act: (bloc) {
-        bloc.add(const AuthEvent.getStatus());
         bloc.add(eventCaller);
       },
       expect: () => [
-        const AuthState.loading(),
-        AuthState.authenticated(tAuthToken),
         const AuthState.loading(),
         const AuthState.error(message: 'Database failure'),
       ],

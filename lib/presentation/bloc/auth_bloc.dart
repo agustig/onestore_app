@@ -17,69 +17,47 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthLogin _authLogin;
   final AuthRegister _authRegister;
   final AuthLogout _authLogout;
-  final AuthGetToken _authGetToken;
   final AuthSaveToken _authSaveToken;
   final AuthRemoveToken _authRemoveToken;
-  String? _currentToken;
+  final AuthGetToken _authGetToken;
 
   AuthBloc({
     required AuthLogin authLogin,
     required AuthRegister authRegister,
     required AuthLogout authLogout,
-    required AuthGetToken authGetToken,
     required AuthSaveToken authSaveToken,
     required AuthRemoveToken authRemoveToken,
+    required AuthGetToken authGetToken,
   })  : _authLogin = authLogin,
         _authRegister = authRegister,
         _authLogout = authLogout,
-        _authGetToken = authGetToken,
         _authSaveToken = authSaveToken,
         _authRemoveToken = authRemoveToken,
+        _authGetToken = authGetToken,
         super(const _Initial()) {
-    on<_GetStatus>(_onGetStatus);
     on<_Login>(_onLogin);
     on<_Register>(_onRegister);
     on<_Logout>(_onLogout);
-  }
-
-  Future<void> _refreshAuthStatus(Emitter<AuthState> emit) async {
-    final result = await _authGetToken.execute();
-    result.fold(
-      (error) => emit(_Error(message: error.message)),
-      (token) {
-        _currentToken = token;
-        emit((_currentToken != null)
-            ? _Authenticated(_currentToken!)
-            : const _Unauthenticated());
-      },
-    );
-  }
-
-  _onGetStatus(AuthEvent event, Emitter<AuthState> emit) async {
-    emit(const _Loading());
-
-    await _refreshAuthStatus(emit);
+    on<_Refresh>((event, emit) => emit(const AuthState.initial()));
   }
 
   _onLogin(_Login event, Emitter<AuthState> emit) async {
     emit(const _Loading());
 
     try {
+      late String currentToken;
       final loginResult = await _authLogin.execute(
           email: event.email, password: event.password);
       loginResult.fold(
         (failure) => throw failure,
-        (authData) => _currentToken = authData.token,
+        (authData) => currentToken = authData.token,
       );
-      if (_currentToken != null) {
-        final saveToken = await _authSaveToken.execute(_currentToken!);
-        saveToken.fold(
-          (failure) => throw failure,
-          (_) => emit(const _Loaded('Login successfully')),
-        );
-      }
 
-      await _refreshAuthStatus(emit);
+      final saveToken = await _authSaveToken.execute(currentToken);
+      saveToken.fold(
+        (failure) => throw failure,
+        (_) => emit(const _Loaded('Login successfully')),
+      );
     } on ValidatorFailure catch (failure) {
       emit(_Error(messages: failure.messages));
     } on Failure catch (failure) {
@@ -91,6 +69,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(const _Loading());
 
     try {
+      late String currentToken;
       final registerResult = await _authRegister.execute(
         name: event.name,
         email: event.email,
@@ -99,17 +78,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       );
       registerResult.fold(
         (failure) => throw failure,
-        (authData) => _currentToken = authData.token,
+        (authData) => currentToken = authData.token,
       );
-      if (_currentToken != null) {
-        final saveToken = await _authSaveToken.execute(_currentToken!);
-        saveToken.fold(
-          (failure) => throw failure,
-          (success) => emit(const _Loaded('Register successfully')),
-        );
-      }
 
-      await _refreshAuthStatus(emit);
+      final saveToken = await _authSaveToken.execute(currentToken);
+      saveToken.fold(
+        (failure) => throw failure,
+        (success) => emit(const _Loaded('Register successfully')),
+      );
     } on ValidatorFailure catch (failure) {
       emit(_Error(messages: failure.messages));
     } on Failure catch (failure) {
@@ -120,27 +96,30 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   _onLogout(_Logout event, Emitter<AuthState> emit) async {
     emit(const _Loading());
     try {
-      late bool isLoggedOutFromRemote;
+      bool isLoggedOutFromRemote = false;
+      late String? authToken;
 
-      if (_currentToken != null) {
-        final logoutRemoteResult = await _authLogout.execute(_currentToken!);
+      final gettingToken = await _authGetToken.execute();
+      gettingToken.fold(
+        (failure) => throw failure,
+        (token) => authToken = token,
+      );
+
+      if (authToken != null) {
+        final logoutRemoteResult = await _authLogout.execute(authToken!);
         logoutRemoteResult.fold(
           (failure) => throw failure,
           (status) => isLoggedOutFromRemote = status,
         );
-
-        if (isLoggedOutFromRemote) {
-          final removeToken = await _authRemoveToken.execute();
-          removeToken.fold(
-            (failure) => throw failure,
-            (_) => emit(const _Loaded('Logout successfully')),
-          );
-        }
       }
 
-      await _refreshAuthStatus(emit);
-    } on ValidatorFailure catch (failure) {
-      emit(_Error(messages: failure.messages));
+      if (isLoggedOutFromRemote) {
+        final removeToken = await _authRemoveToken.execute();
+        removeToken.fold(
+          (failure) => throw failure,
+          (_) => emit(const _Loaded('Logout successfully')),
+        );
+      }
     } on Failure catch (failure) {
       emit(_Error(message: failure.message));
     }

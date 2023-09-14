@@ -13,5 +13,5 @@ class AuthEvent with _$AuthEvent {
     required String passwordConfirmation,
   }) = _Register;
   const factory AuthEvent.logout() = _Logout;
-  const factory AuthEvent.getStatus() = _GetStatus;
+  const factory AuthEvent.refresh() = _Refresh;
 }

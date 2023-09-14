@@ -4,7 +4,6 @@ import 'package:flutter_store_fic7/presentation/bloc/auth_bloc.dart';
 import 'package:flutter_store_fic7/presentation/pages/base_widgets/buttons/custom_button.dart';
 import 'package:flutter_store_fic7/presentation/pages/base_widgets/text_field/custom_text_field.dart';
 import 'package:flutter_store_fic7/presentation/pages/base_widgets/text_field/password_text_field.dart';
-import 'package:flutter_store_fic7/presentation/pages/dashboard/dashboard_page.dart';
 import 'package:flutter_store_fic7/utils/dimensions.dart';
 
 class SignUpWidget extends StatefulWidget {
@@ -49,6 +48,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
   void initState() {
     super.initState();
     _formKey = GlobalKey<FormState>();
+    context.read<AuthBloc>().add(const AuthEvent.refresh());
   }
 
   @override
@@ -66,12 +66,16 @@ class _SignUpWidgetState extends State<SignUpWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final authState = context.watch<AuthBloc>().state;
+    final validatorMessages =
+        authState.whenOrNull(error: (_, messages) => messages);
+
     return ListView(
       padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
       children: [
         Form(
           key: _formKey,
-          child: BlocConsumer<AuthBloc, AuthState>(
+          child: BlocListener<AuthBloc, AuthState>(
             listener: (context, state) {
               state.maybeWhen(
                 orElse: () {},
@@ -91,102 +95,83 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                     content: Text(authMessage),
                   ),
                 ),
-                authenticated: (authToken) {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const DashboardPage(),
-                    ),
-                  );
-                },
               );
             },
-            builder: (context, state) {
-              final validatorMessages = state.whenOrNull(
-                error: (message, messages) => messages,
-              );
-
-              return Column(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: Dimensions.marginSizeDefault,
-                    ),
-                    child: CustomTextField(
-                      hintText: 'Name',
-                      textInputType: TextInputType.name,
-                      focusNode: _nameFocus,
-                      nextNode: _emailFocus,
-                      capitalization: TextCapitalization.words,
-                      controller: _nameController,
-                      errorText: validatorMessages?['name']?[0],
-                    ),
+            child: Column(
+              children: [
+                Container(
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: Dimensions.marginSizeDefault,
                   ),
-                  Container(
-                    margin: const EdgeInsets.only(
-                      top: Dimensions.marginSizeSmall,
-                      left: Dimensions.marginSizeDefault,
-                      right: Dimensions.marginSizeDefault,
-                    ),
-                    child: CustomTextField(
-                      hintText: 'Email',
-                      textInputType: TextInputType.emailAddress,
-                      focusNode: _emailFocus,
-                      nextNode: _passwordFocus,
-                      controller: _emailController,
-                      errorText: validatorMessages?['email']?[0],
-                    ),
+                  child: CustomTextField(
+                    hintText: 'Name',
+                    textInputType: TextInputType.name,
+                    focusNode: _nameFocus,
+                    nextNode: _emailFocus,
+                    capitalization: TextCapitalization.words,
+                    controller: _nameController,
+                    errorText: validatorMessages?['name']?[0],
                   ),
-                  Container(
-                    margin: const EdgeInsets.only(
-                      top: Dimensions.marginSizeSmall,
-                      left: Dimensions.marginSizeDefault,
-                      right: Dimensions.marginSizeDefault,
-                    ),
-                    child: PasswordTextField(
-                      hintText: 'Password',
-                      focusNode: _passwordFocus,
-                      nextNode: _passwordConfirmationFocus,
-                      controller: _passwordController,
-                      textInputAction: TextInputAction.next,
-                      errorText: validatorMessages?['password']?[0],
-                    ),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(
+                    top: Dimensions.marginSizeSmall,
+                    left: Dimensions.marginSizeDefault,
+                    right: Dimensions.marginSizeDefault,
                   ),
-                  Container(
-                    margin: const EdgeInsets.only(
-                      top: Dimensions.marginSizeSmall,
-                      left: Dimensions.marginSizeDefault,
-                      right: Dimensions.marginSizeDefault,
-                    ),
-                    child: PasswordTextField(
-                      hintText: 'Password Confirmation',
-                      focusNode: _passwordConfirmationFocus,
-                      controller: _passwordConfirmationController,
-                      textInputAction: TextInputAction.done,
-                      errorText: validatorMessages?['password_password']?[0],
-                    ),
+                  child: CustomTextField(
+                    hintText: 'Email',
+                    textInputType: TextInputType.emailAddress,
+                    focusNode: _emailFocus,
+                    nextNode: _passwordFocus,
+                    controller: _emailController,
+                    errorText: validatorMessages?['email']?[0],
                   ),
-                ],
-              );
-            },
+                ),
+                Container(
+                  margin: const EdgeInsets.only(
+                    top: Dimensions.marginSizeSmall,
+                    left: Dimensions.marginSizeDefault,
+                    right: Dimensions.marginSizeDefault,
+                  ),
+                  child: PasswordTextField(
+                    hintText: 'Password',
+                    focusNode: _passwordFocus,
+                    nextNode: _passwordConfirmationFocus,
+                    controller: _passwordController,
+                    textInputAction: TextInputAction.next,
+                    errorText: validatorMessages?['password']?[0],
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(
+                    top: Dimensions.marginSizeSmall,
+                    left: Dimensions.marginSizeDefault,
+                    right: Dimensions.marginSizeDefault,
+                  ),
+                  child: PasswordTextField(
+                    hintText: 'Password Confirmation',
+                    focusNode: _passwordConfirmationFocus,
+                    controller: _passwordConfirmationController,
+                    textInputAction: TextInputAction.done,
+                    errorText: validatorMessages?['password_confirmation']?[1],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         Container(
-          margin: const EdgeInsets.all(Dimensions.marginSizeLarge),
-          child: BlocBuilder<AuthBloc, AuthState>(
-            builder: (context, state) {
-              return state.maybeWhen(
-                orElse: () => CustomButton(
-                  onTap: addUser,
-                  buttonText: 'Sign Up',
-                ),
-                loading: () => const Center(
-                  child: CircularProgressIndicator(),
-                ),
-              );
-            },
-          ),
-        ),
+            margin: const EdgeInsets.all(Dimensions.marginSizeLarge),
+            child: authState.maybeWhen(
+              orElse: () => CustomButton(
+                onTap: addUser,
+                buttonText: 'Sign Up',
+              ),
+              loading: () => const Center(
+                child: CircularProgressIndicator(),
+              ),
+            )),
       ],
     );
   }

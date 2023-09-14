@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_store_fic7/presentation/bloc/auth_bloc.dart';
+import 'package:flutter_store_fic7/presentation/bloc/auth_status_bloc.dart';
 import 'package:flutter_store_fic7/presentation/pages/base_widgets/buttons/custom_button.dart';
 import 'package:flutter_store_fic7/presentation/pages/base_widgets/text_field/custom_text_field.dart';
 import 'package:flutter_store_fic7/presentation/pages/base_widgets/text_field/password_text_field.dart';
@@ -18,8 +19,8 @@ class SignInWidget extends StatefulWidget {
 
 class _SignInWidgetState extends State<SignInWidget> {
   late GlobalKey<FormState> _fromKeyLogin;
-  late TextEditingController _emailController;
-  late TextEditingController _passwordController;
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   final _emailNode = FocusNode();
   final _passwdNode = FocusNode();
@@ -28,8 +29,7 @@ class _SignInWidgetState extends State<SignInWidget> {
   void initState() {
     super.initState();
     _fromKeyLogin = GlobalKey<FormState>();
-    _emailController = TextEditingController();
-    _passwordController = TextEditingController();
+    context.read<AuthBloc>().add(const AuthEvent.refresh());
   }
 
   @override
@@ -49,17 +49,22 @@ class _SignInWidgetState extends State<SignInWidget> {
       context.read<AuthBloc>().add(
             AuthEvent.login(email: email, password: password),
           );
+      context.read<AuthStatusBloc>().add(const AuthStatusEvent.check());
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final authState = context.watch<AuthBloc>().state;
+    final validatorMessages =
+        authState.whenOrNull(error: (_, messages) => messages);
+
     return ListView(
       padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
       children: [
         Form(
           key: _fromKeyLogin,
-          child: BlocConsumer<AuthBloc, AuthState>(
+          child: BlocListener<AuthBloc, AuthState>(
             listener: (context, state) {
               state.maybeWhen(
                 orElse: () => null,
@@ -77,50 +82,37 @@ class _SignInWidgetState extends State<SignInWidget> {
                     ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text(authMessage)),
                 ),
-                authenticated: (authData) => Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const DashboardPage(),
+              );
+            },
+            child: Column(
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(
+                    bottom: Dimensions.marginSizeSmall,
+                  ),
+                  child: CustomTextField(
+                    controller: _emailController,
+                    hintText: 'Email',
+                    focusNode: _emailNode,
+                    nextNode: _passwdNode,
+                    textInputType: TextInputType.emailAddress,
+                    errorText: validatorMessages?['email']?[0],
                   ),
                 ),
-              );
-            },
-            builder: (context, state) {
-              final validatorMessages = state.maybeWhen(
-                error: (message, messages) => messages,
-                orElse: () => null,
-              );
-
-              return Column(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(
-                      bottom: Dimensions.marginSizeSmall,
-                    ),
-                    child: CustomTextField(
-                      controller: _emailController,
-                      hintText: 'Email',
-                      focusNode: _emailNode,
-                      nextNode: _passwdNode,
-                      textInputType: TextInputType.emailAddress,
-                      errorText: validatorMessages?['email']?[0],
-                    ),
+                Container(
+                  margin: const EdgeInsets.only(
+                    bottom: Dimensions.marginSizeSmall,
                   ),
-                  Container(
-                    margin: const EdgeInsets.only(
-                      bottom: Dimensions.marginSizeSmall,
-                    ),
-                    child: PasswordTextField(
-                      controller: _passwordController,
-                      hintText: 'Password',
-                      focusNode: _passwdNode,
-                      textInputAction: TextInputAction.done,
-                      errorText: validatorMessages?['password']?[0],
-                    ),
+                  child: PasswordTextField(
+                    controller: _passwordController,
+                    hintText: 'Password',
+                    focusNode: _passwdNode,
+                    textInputAction: TextInputAction.done,
+                    errorText: validatorMessages?['password']?[0],
                   ),
-                ],
-              );
-            },
+                ),
+              ],
+            ),
           ),
         ),
         Container(
@@ -161,18 +153,14 @@ class _SignInWidgetState extends State<SignInWidget> {
             right: 20.0,
             left: 20.0,
           ),
-          child: BlocBuilder<AuthBloc, AuthState>(
-            builder: (context, state) {
-              return state.maybeWhen(
-                orElse: () => CustomButton(
-                  onTap: loginUser,
-                  buttonText: 'Sign In',
-                ),
-                loading: () => const Center(
-                  child: CircularProgressIndicator(),
-                ),
-              );
-            },
+          child: authState.maybeWhen(
+            orElse: () => CustomButton(
+              onTap: loginUser,
+              buttonText: 'Sign In',
+            ),
+            loading: () => const Center(
+              child: CircularProgressIndicator(),
+            ),
           ),
         ),
         const SizedBox(width: Dimensions.paddingSizeDefault),

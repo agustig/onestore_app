@@ -9,6 +9,7 @@ import 'package:flutter_store_fic7/domain/usecases/auth_register.dart';
 import 'package:flutter_store_fic7/domain/usecases/auth_remove_token.dart';
 import 'package:flutter_store_fic7/domain/usecases/auth_save_token.dart';
 import 'package:flutter_store_fic7/presentation/bloc/auth_bloc.dart';
+import 'package:flutter_store_fic7/presentation/bloc/auth_status_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,11 +23,12 @@ void init() {
       authLogin: locator(),
       authRegister: locator(),
       authLogout: locator(),
-      authGetToken: locator(),
       authSaveToken: locator(),
       authRemoveToken: locator(),
+      authGetToken: locator(),
     ),
   );
+  locator.registerFactory(() => AuthStatusBloc(locator()));
 
   // Usecases
   locator.registerLazySingleton(() => AuthRegister(locator()));

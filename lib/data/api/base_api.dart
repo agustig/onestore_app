@@ -11,6 +11,8 @@ class BaseApi {
   };
 
   authyHeaders(String authToken) {
-    return headers.addAll({"Authorization": "Bearer $authToken"});
+    final authyHeaders = headers;
+    authyHeaders["Authorization"] = "Bearer $authToken";
+    return authyHeaders;
   }
 }
