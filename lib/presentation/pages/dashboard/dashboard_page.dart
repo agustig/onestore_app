@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_store_fic7/presentation/bloc/auth/auth_bloc.dart';
-import 'package:flutter_store_fic7/presentation/bloc/auth_status/auth_status_bloc.dart';
 import 'package:flutter_store_fic7/presentation/pages/home/home_page.dart';
 import 'package:flutter_store_fic7/utils/images.dart';
 
@@ -72,9 +71,6 @@ class _DashboardPageState extends State<DashboardPage> {
 
   @override
   Widget build(BuildContext context) {
-    final authStatusState = context.watch<AuthStatusBloc>().state;
-    final currentToken =
-        authStatusState.whenOrNull(authenticated: (token) => token);
     return Scaffold(
       key: scaffoldKey,
       bottomNavigationBar: BottomNavigationBar(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_store_fic7/domain/entities/product.dart';
 import 'package:flutter_store_fic7/presentation/bloc/product/product_bloc.dart';
 import 'package:flutter_store_fic7/presentation/pages/base_widgets/title_row.dart';
 import 'package:flutter_store_fic7/presentation/pages/home/widgets/banner_widget.dart';
@@ -75,7 +74,7 @@ class HomePage extends StatelessWidget {
                 delegate: SliverDelegate(
                   child: InkWell(
                     onTap: () {
-                      // TODO: add inkwell ontap function
+                      // TODO: add inkwell onTap function
                     },
                     child: Container(
                       padding: const EdgeInsets.symmetric(
