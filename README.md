@@ -1,16 +1,14 @@
 # flutter_store_fic7
 
-A new Flutter project.
+[![Build Status](https://app.bitrise.io/app/497c2170-28d5-461c-8419-fa4620b540ef/status.svg?token=5l9eh9mA3v1rBPyzeamTUg&branch=main)](https://app.bitrise.io/app/497c2170-28d5-461c-8419-fa4620b540ef)
+[![codecov](https://codecov.io/gh/agustig/flutter_store_fic7/graph/badge.svg?token=QM8TPE6Z5Q)](https://codecov.io/gh/agustig/flutter_store_fic7)
+
+This app is sandbox with FIC 7 learning based [this repository](https://github.com/bahrie127/flutter_multistore_user_app) with use flutter.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Run build_runner before testing or build:
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```sh:
+dart run build_runner build
+```
