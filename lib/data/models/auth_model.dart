@@ -19,13 +19,6 @@ class AuthModel extends Equatable {
     return Auth(token: token, user: user.toEntity());
   }
 
-  factory AuthModel.fromEntity(Auth auth) {
-    return AuthModel(
-      token: auth.token,
-      user: UserModel.fromEntity(auth.user),
-    );
-  }
-
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'auth_token': token,

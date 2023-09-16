@@ -1,26 +1,48 @@
 import 'package:flutter_store_fic7/data/data_sources/auth_local_data_source.dart';
 import 'package:flutter_store_fic7/data/data_sources/auth_remote_data_source.dart';
+import 'package:flutter_store_fic7/data/data_sources/category_remote_data_source.dart';
+import 'package:flutter_store_fic7/data/data_sources/product_remote_data_source.dart';
 import 'package:flutter_store_fic7/domain/repositories/auth_repository.dart';
-import 'package:flutter_store_fic7/domain/usecases/auth_get_token.dart';
-import 'package:flutter_store_fic7/domain/usecases/auth_login.dart';
-import 'package:flutter_store_fic7/domain/usecases/auth_logout.dart';
-import 'package:flutter_store_fic7/domain/usecases/auth_register.dart';
-import 'package:flutter_store_fic7/domain/usecases/auth_remove_token.dart';
-import 'package:flutter_store_fic7/domain/usecases/auth_save_token.dart';
+import 'package:flutter_store_fic7/domain/repositories/category_repository.dart';
+import 'package:flutter_store_fic7/domain/repositories/product_repository.dart';
+import 'package:flutter_store_fic7/domain/usecases/auth/auth_get_token.dart';
+import 'package:flutter_store_fic7/domain/usecases/auth/auth_login.dart';
+import 'package:flutter_store_fic7/domain/usecases/auth/auth_logout.dart';
+import 'package:flutter_store_fic7/domain/usecases/auth/auth_register.dart';
+import 'package:flutter_store_fic7/domain/usecases/auth/auth_remove_token.dart';
+import 'package:flutter_store_fic7/domain/usecases/auth/auth_save_token.dart';
+import 'package:flutter_store_fic7/domain/usecases/category/get_categories.dart';
+import 'package:flutter_store_fic7/domain/usecases/category/get_category.dart';
+import 'package:flutter_store_fic7/domain/usecases/product/get_product.dart';
+import 'package:flutter_store_fic7/domain/usecases/product/get_products.dart';
 import 'package:http/http.dart' as http;
 import 'package:mocktail/mocktail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// Mock External
 class MockClient extends Mock implements http.Client {}
 
 class MockSharedPreferences extends Mock implements SharedPreferences {}
 
+// Mock Data Sources
 class MockAuthRemoteDataSource extends Mock implements AuthRemoteDataSource {}
 
 class MockAuthLocalDataSource extends Mock implements AuthLocalDataSource {}
 
+class MockCategoryRemoteDataSource extends Mock
+    implements CategoryRemoteDataSource {}
+
+class MockProductRemoteDataSource extends Mock
+    implements ProductRemoteDataSource {}
+
+// Mock Repositories
 class MockAuthRepository extends Mock implements AuthRepository {}
 
+class MockCategoryRepository extends Mock implements CategoryRepository {}
+
+class MockProductRepository extends Mock implements ProductRepository {}
+
+// Mock Use Cases
 class MockAuthRegister extends Mock implements AuthRegister {}
 
 class MockAuthLogin extends Mock implements AuthLogin {}
@@ -32,3 +54,11 @@ class MockAuthGetToken extends Mock implements AuthGetToken {}
 class MockAuthRemoveToken extends Mock implements AuthRemoveToken {}
 
 class MockAuthSaveToken extends Mock implements AuthSaveToken {}
+
+class MockGetCategory extends Mock implements GetCategory {}
+
+class MockGetCategories extends Mock implements GetCategories {}
+
+class MockGetProduct extends Mock implements GetProduct {}
+
+class MockGetProducts extends Mock implements GetProducts {}

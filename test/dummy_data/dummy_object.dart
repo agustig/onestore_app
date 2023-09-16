@@ -1,7 +1,13 @@
 import 'package:flutter_store_fic7/data/models/api_response_model.dart';
 import 'package:flutter_store_fic7/data/models/auth_model.dart';
+import 'package:flutter_store_fic7/data/models/category_model.dart';
+import 'package:flutter_store_fic7/data/models/collection_model.dart';
+import 'package:flutter_store_fic7/data/models/product_model.dart';
 import 'package:flutter_store_fic7/data/models/user_model.dart';
 import 'package:flutter_store_fic7/domain/entities/auth.dart';
+import 'package:flutter_store_fic7/domain/entities/category.dart';
+import 'package:flutter_store_fic7/domain/entities/collection.dart';
+import 'package:flutter_store_fic7/domain/entities/product.dart';
 import 'package:flutter_store_fic7/domain/entities/user.dart';
 
 const testUserModel = UserModel(
@@ -64,3 +70,105 @@ const testAuthLoginData = {
   'email': 'marlee.ledner@example.net',
   'password': 'password',
 };
+
+const testProductModelShort = ProductModel(
+  id: 7,
+  name: 'Quos ad.',
+  description:
+      'Et omnis voluptas et perspiciatis inventore quis ut. Alias corporis maxime nostrum nulla sit. Consequatur sit ea ab dolorem non aut porro. Alias amet deleniti eaque voluptas omnis fugiat.',
+  price: '155998',
+  imageUrl: 'https://via.placeholder.com/200x200.png/00dd66?text=inventore',
+);
+
+const testProductShort = Product(
+  id: 7,
+  name: 'Quos ad.',
+  description:
+      'Et omnis voluptas et perspiciatis inventore quis ut. Alias corporis maxime nostrum nulla sit. Consequatur sit ea ab dolorem non aut porro. Alias amet deleniti eaque voluptas omnis fugiat.',
+  price: '155998',
+  imageUrl: 'https://via.placeholder.com/200x200.png/00dd66?text=inventore',
+);
+
+final testCategoryModelDetail = CategoryModel(
+  id: 1,
+  name: 'minus',
+  description: 'Aut voluptatibus numquam.',
+  products: const [testProductModelShort],
+  createdAt: DateTime.parse('2023-09-05T04:48:37.000000Z'),
+  updatedAt: DateTime.parse('2023-09-05T04:48:37.000000Z'),
+);
+
+final testCategoryDetail = Category(
+  id: 1,
+  name: 'minus',
+  description: 'Aut voluptatibus numquam.',
+  products: const [testProductShort],
+  createdAt: DateTime.parse('2023-09-05T04:48:37.000000Z'),
+  updatedAt: DateTime.parse('2023-09-05T04:48:37.000000Z'),
+);
+
+const testUserModel2 = UserModel(id: 19, name: 'Pattie McCullough');
+
+const testUser2 = User(id: 19, name: 'Pattie McCullough');
+
+const testCategoryModelShort = CategoryModel(
+  id: 1,
+  name: 'minus',
+  description: 'Aut voluptatibus numquam.',
+);
+
+const testCategoryShort = Category(
+  id: 1,
+  name: 'minus',
+  description: 'Aut voluptatibus numquam.',
+);
+
+final testProductModelDetail = ProductModel(
+  id: 7,
+  name: 'Quos ad.',
+  description:
+      'Et omnis voluptas et perspiciatis inventore quis ut. Alias corporis maxime nostrum nulla sit. Consequatur sit ea ab dolorem non aut porro. Alias amet deleniti eaque voluptas omnis fugiat.',
+  price: '155998',
+  imageUrl: 'https://via.placeholder.com/200x200.png/00dd66?text=inventore',
+  seller: testUserModel2,
+  category: testCategoryModelShort,
+  createdAt: DateTime.parse('2023-09-05T04:48:38.000000Z'),
+  updatedAt: DateTime.parse('2023-09-05T04:48:38.000000Z'),
+);
+
+final testProductDetail = Product(
+  id: 7,
+  name: 'Quos ad.',
+  description:
+      'Et omnis voluptas et perspiciatis inventore quis ut. Alias corporis maxime nostrum nulla sit. Consequatur sit ea ab dolorem non aut porro. Alias amet deleniti eaque voluptas omnis fugiat.',
+  price: '155998',
+  imageUrl: 'https://via.placeholder.com/200x200.png/00dd66?text=inventore',
+  seller: testUser2,
+  category: testCategoryShort,
+  createdAt: DateTime.parse('2023-09-05T04:48:38.000000Z'),
+  updatedAt: DateTime.parse('2023-09-05T04:48:38.000000Z'),
+);
+
+const testCategoryCollectionModel = CollectionModel(
+  collectionNumber: 1,
+  collections: [testCategoryModelShort],
+  totalCollections: 1,
+);
+
+const testCategoryCollection = Collection(
+  collectionNumber: 1,
+  collections: [testCategoryShort],
+  totalCollections: 1,
+);
+
+const testProductCollectionModel = CollectionModel(
+  collectionNumber: 1,
+  collections: [testProductModelShort],
+  totalCollections: 10,
+);
+
+const testProductCollection = Collection(
+  collectionNumber: 1,
+  collections: [testProductShort],
+  totalCollections: 10,
+);

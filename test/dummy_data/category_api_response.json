@@ -1,0 +1,20 @@
+{
+  "status": 200,
+  "message": "Category retrieved",
+  "data": {
+    "id": 1,
+    "name": "minus",
+    "description": "Aut voluptatibus numquam.",
+    "products": [
+      {
+        "id": 7,
+        "name": "Quos ad.",
+        "description": "Et omnis voluptas et perspiciatis inventore quis ut. Alias corporis maxime nostrum nulla sit. Consequatur sit ea ab dolorem non aut porro. Alias amet deleniti eaque voluptas omnis fugiat.",
+        "price": "155998",
+        "image_url": "https://via.placeholder.com/200x200.png/00dd66?text=inventore"
+      }
+    ],
+    "created_at": "2023-09-05T04:48:37.000000Z",
+    "updated_at": "2023-09-05T04:48:37.000000Z"
+  }
+}

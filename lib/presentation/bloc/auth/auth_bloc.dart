@@ -1,11 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_store_fic7/domain/usecases/auth_get_token.dart';
-import 'package:flutter_store_fic7/domain/usecases/auth_login.dart';
-import 'package:flutter_store_fic7/domain/usecases/auth_logout.dart';
-import 'package:flutter_store_fic7/domain/usecases/auth_register.dart';
-import 'package:flutter_store_fic7/domain/usecases/auth_remove_token.dart';
-import 'package:flutter_store_fic7/domain/usecases/auth_save_token.dart';
+import 'package:flutter_store_fic7/domain/usecases/auth/auth_get_token.dart';
+import 'package:flutter_store_fic7/domain/usecases/auth/auth_login.dart';
+import 'package:flutter_store_fic7/domain/usecases/auth/auth_logout.dart';
+import 'package:flutter_store_fic7/domain/usecases/auth/auth_register.dart';
+import 'package:flutter_store_fic7/domain/usecases/auth/auth_remove_token.dart';
+import 'package:flutter_store_fic7/domain/usecases/auth/auth_save_token.dart';
 import 'package:flutter_store_fic7/utils/failure.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

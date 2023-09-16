@@ -1,0 +1,11 @@
+{
+  "status": 200,
+  "message": "Categories retrieved",
+  "data": [
+    {
+      "id": 1,
+      "name": "minus",
+      "description": "Aut voluptatibus numquam."
+    }
+  ]
+}

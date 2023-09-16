@@ -39,7 +39,7 @@ void main() {
           password: 'password',
         );
 
-    test('should return a success message when data source execute is success',
+    test('should return a Auth Entity when data source execute is success',
         () async {
       // Arrange
       when(() => mockRemoteCaller()).thenAnswer((_) async => tAuthModel);

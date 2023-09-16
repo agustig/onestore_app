@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_store_fic7/presentation/bloc/auth_bloc.dart';
-import 'package:flutter_store_fic7/presentation/bloc/auth_status_bloc.dart';
+import 'package:flutter_store_fic7/presentation/bloc/auth/auth_bloc.dart';
+import 'package:flutter_store_fic7/presentation/bloc/auth_status/auth_status_bloc.dart';
+import 'package:flutter_store_fic7/presentation/pages/home/home_page.dart';
 import 'package:flutter_store_fic7/utils/images.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -18,8 +19,9 @@ class _DashboardPageState extends State<DashboardPage> {
   List<Widget> pages() {
     final authBloc = context.watch<AuthBloc>();
     final authState = authBloc.state;
+
     return <Widget>[
-      const Center(child: Text('Home')),
+      const HomePage(),
       const Center(child: Text('Order')),
       BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
@@ -93,7 +95,6 @@ class _DashboardPageState extends State<DashboardPage> {
           });
         },
       ),
-      appBar: AppBar(title: Text(currentToken ?? "Not authenticated")),
       body: PageView.builder(
         controller: pageController,
         itemCount: pages().length,

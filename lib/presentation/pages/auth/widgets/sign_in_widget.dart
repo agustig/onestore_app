@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_store_fic7/presentation/bloc/auth_bloc.dart';
-import 'package:flutter_store_fic7/presentation/bloc/auth_status_bloc.dart';
+import 'package:flutter_store_fic7/presentation/bloc/auth/auth_bloc.dart';
 import 'package:flutter_store_fic7/presentation/pages/base_widgets/buttons/custom_button.dart';
 import 'package:flutter_store_fic7/presentation/pages/base_widgets/text_field/custom_text_field.dart';
 import 'package:flutter_store_fic7/presentation/pages/base_widgets/text_field/password_text_field.dart';
@@ -49,7 +48,6 @@ class _SignInWidgetState extends State<SignInWidget> {
       context.read<AuthBloc>().add(
             AuthEvent.login(email: email, password: password),
           );
-      context.read<AuthStatusBloc>().add(const AuthStatusEvent.check());
     }
   }
 

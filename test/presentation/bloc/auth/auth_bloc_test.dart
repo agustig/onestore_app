@@ -1,12 +1,12 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter_store_fic7/presentation/bloc/auth_bloc.dart';
+import 'package:flutter_store_fic7/presentation/bloc/auth/auth_bloc.dart';
 import 'package:flutter_store_fic7/utils/failure.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../dummy_data/dummy_object.dart';
-import '../../mock_helper.dart';
+import '../../../dummy_data/dummy_object.dart';
+import '../../../mock_helper.dart';
 
 void main() {
   late AuthBloc authBloc;
