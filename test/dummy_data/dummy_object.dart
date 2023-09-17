@@ -93,7 +93,6 @@ final testCategoryModelDetail = CategoryModel(
   id: 1,
   name: 'minus',
   description: 'Aut voluptatibus numquam.',
-  products: const [testProductModelShort],
   createdAt: DateTime.parse('2023-09-05T04:48:37.000000Z'),
   updatedAt: DateTime.parse('2023-09-05T04:48:37.000000Z'),
 );
@@ -102,7 +101,6 @@ final testCategoryDetail = Category(
   id: 1,
   name: 'minus',
   description: 'Aut voluptatibus numquam.',
-  products: const [testProductShort],
   createdAt: DateTime.parse('2023-09-05T04:48:37.000000Z'),
   updatedAt: DateTime.parse('2023-09-05T04:48:37.000000Z'),
 );
