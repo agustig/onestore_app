@@ -19,8 +19,11 @@ class ProductRepositoryImpl implements ProductRepository {
     String? authToken,
   }) async {
     try {
-      final productData =
-          await dataSource.getProduct(id: id, authToken: authToken);
+      final productData = await dataSource.getProduct(
+        id: id,
+        authToken: authToken,
+      );
+
       return Right(productData.toEntity());
     } on SocketException {
       return const Left(ConnectionFailure('Failed to connect to the network'));
@@ -35,8 +38,32 @@ class ProductRepositoryImpl implements ProductRepository {
     String? authToken,
   }) async {
     try {
-      final productsData =
-          await dataSource.getProducts(page: page, authToken: authToken);
+      final productsData = await dataSource.getProducts(
+        page: page,
+        authToken: authToken,
+      );
+
+      return Right(productsData.toEntity() as Collection<Product>);
+    } on SocketException {
+      return const Left(ConnectionFailure('Failed to connect to the network'));
+    } on ServerException {
+      return const Left(ServerFailure('Server Failure'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Collection<Product>>> getProductsByCategory(
+    int categoryId, {
+    int? page,
+    String? authToken,
+  }) async {
+    try {
+      final productsData = await dataSource.getProductsByCategory(
+        categoryId,
+        page: page,
+        authToken: authToken,
+      );
+
       return Right(productsData.toEntity() as Collection<Product>);
     } on SocketException {
       return const Left(ConnectionFailure('Failed to connect to the network'));

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_store_fic7/main.dart';
 import 'package:flutter_store_fic7/presentation/bloc/auth/auth_bloc.dart';
+import 'package:flutter_store_fic7/presentation/bloc/auth_status/auth_status_bloc.dart';
 import 'package:flutter_store_fic7/presentation/pages/home/home_page.dart';
 import 'package:flutter_store_fic7/utils/images.dart';
 
@@ -17,7 +19,7 @@ class _DashboardPageState extends State<DashboardPage> {
   var currentIndex = 0;
   List<Widget> pages() {
     final authBloc = context.watch<AuthBloc>();
-    final authState = authBloc.state;
+    final authStatusState = context.watch<AuthStatusBloc>().state;
 
     return <Widget>[
       const HomePage(),
@@ -43,12 +45,20 @@ class _DashboardPageState extends State<DashboardPage> {
           );
         },
         child: Center(
-          child: authState.maybeWhen(
-            orElse: () => ElevatedButton(
+          child: authStatusState.maybeWhen(
+            orElse: () => const CircularProgressIndicator(),
+            authenticated: (_) => ElevatedButton(
               onPressed: () => authBloc.add(const AuthEvent.logout()),
               child: const Text('Logout'),
             ),
-            loading: () => const CircularProgressIndicator(),
+            unauthenticated: () => ElevatedButton(
+              onPressed: () => Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MyApp(),
+                  )),
+              child: const Text('Login'),
+            ),
           ),
         ),
       ),

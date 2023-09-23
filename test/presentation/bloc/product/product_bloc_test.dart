@@ -12,14 +12,17 @@ void main() {
   late ProductBloc productBloc;
   late MockGetProduct mockGetProduct;
   late MockGetProducts mockGetProducts;
+  late MockGetProductsByCategory mockGetProductsByCategory;
 
   setUp(() {
     mockGetProduct = MockGetProduct();
     mockGetProducts = MockGetProducts();
+    mockGetProductsByCategory = MockGetProductsByCategory();
 
     productBloc = ProductBloc(
       getProduct: mockGetProduct,
       getProducts: mockGetProducts,
+      getProductsByCategory: mockGetProductsByCategory,
     );
   });
 
@@ -94,6 +97,46 @@ void main() {
         const ProductState.error('Failed connect to the Network'),
       ],
       verify: (bloc) => [mockGetProducts.execute()],
+    );
+  });
+
+  group('GetProductsByCategory event:', () {
+    const tProductCollection = testProductCollection;
+    const tCategory = testCategoryShort;
+    blocTest(
+      'should return [loading, loaded] when products is loaded successfully',
+      build: () {
+        when(() => mockGetProductsByCategory.execute(tCategory.id))
+            .thenAnswer((_) async => const Right(tProductCollection));
+        return productBloc;
+      },
+      act: (bloc) =>
+          bloc.add(const ProductEvent.getProductsByCategory(tCategory)),
+      expect: () => [
+        const ProductState.loading(),
+        ProductState.loaded(
+          products: tProductCollection.collections,
+          canLoadMore: true,
+        ),
+      ],
+      verify: (bloc) => [mockGetProductsByCategory.execute(tCategory.id)],
+    );
+
+    blocTest(
+      'should return [loading, loaded] when products loading has get error',
+      build: () {
+        when(() => mockGetProductsByCategory.execute(tCategory.id)).thenAnswer(
+            (_) async =>
+                const Left(ConnectionFailure('Failed connect to the Network')));
+        return productBloc;
+      },
+      act: (bloc) =>
+          bloc.add(const ProductEvent.getProductsByCategory(tCategory)),
+      expect: () => [
+        const ProductState.loading(),
+        const ProductState.error('Failed connect to the Network'),
+      ],
+      verify: (bloc) => [mockGetProductsByCategory.execute(tCategory.id)],
     );
   });
 }

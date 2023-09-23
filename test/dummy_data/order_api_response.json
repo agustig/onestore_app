@@ -1,0 +1,36 @@
+{
+  "status": 200,
+  "message": "Order placed",
+  "data": {
+    "id": 2,
+    "number": "16952705781650bc6b20b3fc",
+    "items": [
+      {
+        "product": {
+          "id": 7,
+          "name": "Quos ad.",
+          "description": "Et omnis voluptas et perspiciatis inventore quis ut. Alias corporis maxime nostrum nulla sit. Consequatur sit ea ab dolorem non aut porro. Alias amet deleniti eaque voluptas omnis fugiat.",
+          "price": "155998",
+          "image_url": "https://via.placeholder.com/200x200.png/00dd66?text=inventore",
+          "seller": {
+            "id": 19,
+            "name": "Pattie McCullough"
+          },
+          "category": {
+            "id": 1,
+            "name": "minus",
+            "description": "Aut voluptatibus numquam."
+          },
+          "created_at": "2023-09-05T04:48:38.000Z",
+          "updated_at": "2023-09-05T04:48:38.000Z"
+        },
+        "quantity": 1
+      }
+    ],
+    "delivery_address": "Jl Angkasa 1 Golden Boutique Hotel Lt Basement and Dasar, Dki Jakarta",
+    "total_price": 1240664,
+    "payment_url": "https://app.sandbox.midtrans.com/snap/v3/redirection/442dasgtewrstertyh",
+    "created_at": "2023-09-21T04:29:38.000Z",
+    "updated_at": "2023-09-21T04:29:40.000Z"
+  }
+}

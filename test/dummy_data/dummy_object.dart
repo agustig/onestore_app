@@ -2,11 +2,15 @@ import 'package:flutter_store_fic7/data/models/api_response_model.dart';
 import 'package:flutter_store_fic7/data/models/auth_model.dart';
 import 'package:flutter_store_fic7/data/models/category_model.dart';
 import 'package:flutter_store_fic7/data/models/collection_model.dart';
+import 'package:flutter_store_fic7/data/models/order_item_model.dart';
+import 'package:flutter_store_fic7/data/models/order_model.dart';
 import 'package:flutter_store_fic7/data/models/product_model.dart';
 import 'package:flutter_store_fic7/data/models/user_model.dart';
 import 'package:flutter_store_fic7/domain/entities/auth.dart';
 import 'package:flutter_store_fic7/domain/entities/category.dart';
 import 'package:flutter_store_fic7/domain/entities/collection.dart';
+import 'package:flutter_store_fic7/domain/entities/order.dart';
+import 'package:flutter_store_fic7/domain/entities/order_item.dart';
 import 'package:flutter_store_fic7/domain/entities/product.dart';
 import 'package:flutter_store_fic7/domain/entities/user.dart';
 
@@ -169,4 +173,57 @@ const testProductCollection = Collection(
   collectionNumber: 1,
   collections: [testProductShort],
   totalCollections: 10,
+);
+
+final testOrderData = {
+  'items': [testOrderItemModel.toCheckoutItem()],
+  'delivery_address':
+      'Jl Angkasa 1 Golden Boutique Hotel Lt Basement and Dasar, Dki Jakarta',
+};
+
+final testOrderItemModel = OrderItemModel(
+  product: testProductModelDetail,
+  quantity: 1,
+);
+
+final testOrderItem = OrderItem(product: testProductDetail, quantity: 1);
+final testOrderItem2 = OrderItem(product: testProductDetail, quantity: 2);
+
+final testOrderModel = OrderModel(
+  id: 2,
+  number: '16952705781650bc6b20b3fc',
+  items: [testOrderItemModel],
+  paymentUrl:
+      'https://app.sandbox.midtrans.com/snap/v3/redirection/442dasgtewrstertyh',
+  deliveryAddress:
+      'Jl Angkasa 1 Golden Boutique Hotel Lt Basement and Dasar, Dki Jakarta',
+  totalPrice: 1240664,
+  createdAt: DateTime.parse('2023-09-21T04:29:38.000Z'),
+  updatedAt: DateTime.parse('2023-09-21T04:29:40.000Z'),
+);
+
+final testOrder = Order(
+  id: 2,
+  number: '16952705781650bc6b20b3fc',
+  items: [testOrderItem],
+  paymentUrl:
+      'https://app.sandbox.midtrans.com/snap/v3/redirection/442dasgtewrstertyh',
+  deliveryAddress:
+      'Jl Angkasa 1 Golden Boutique Hotel Lt Basement and Dasar, Dki Jakarta',
+  totalPrice: 1240664,
+  createdAt: DateTime.parse('2023-09-21T04:29:38.000Z'),
+  updatedAt: DateTime.parse('2023-09-21T04:29:40.000Z'),
+);
+
+final testOrder2 = Order(
+  id: 2,
+  number: '16952705781650bc6b20b3fc',
+  items: [testOrderItem2],
+  paymentUrl:
+      'https://app.sandbox.midtrans.com/snap/v3/redirection/442dasgtewrstertyh',
+  deliveryAddress:
+      'Jl Angkasa 1 Golden Boutique Hotel Lt Basement and Dasar, Dki Jakarta',
+  totalPrice: 1240664,
+  createdAt: DateTime.parse('2023-09-21T04:29:38.000Z'),
+  updatedAt: DateTime.parse('2023-09-21T04:29:40.000Z'),
 );

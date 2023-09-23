@@ -87,15 +87,17 @@ void main() {
         expect(
           result,
           equals(
-            const Left(ValidatorFailure(
-              {
-                "email": ["The email field must be a valid email address."],
-                "password": [
-                  "The password field must be at least 8 characters.",
-                  "The password field confirmation does not match."
-                ]
-              },
-            )),
+            const Left(
+              ValidatorFailure(
+                {
+                  "email": ["The email field must be a valid email address."],
+                  "password": [
+                    "The password field must be at least 8 characters.",
+                    "The password field confirmation does not match."
+                  ]
+                },
+              ),
+            ),
           ),
         );
       },
@@ -283,7 +285,7 @@ void main() {
     });
   });
 
-  group('saveRemoveToken function:', () {
+  group('removeAuth function:', () {
     authRepositoryCaller() => authRepository.removeAuthToken();
     mockLocalCaller() => mockLocalDataSource.removeAuthToken();
 

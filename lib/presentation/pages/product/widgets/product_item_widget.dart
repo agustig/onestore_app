@@ -1,25 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_store_fic7/domain/entities/product.dart';
+import 'package:flutter_store_fic7/presentation/bloc/product/product_bloc.dart';
 import 'package:flutter_store_fic7/presentation/pages/base_widgets/rating_bar.dart';
+import 'package:flutter_store_fic7/presentation/pages/product/product_detail.dart';
 import 'package:flutter_store_fic7/utils/color_resource.dart';
 import 'package:flutter_store_fic7/utils/custom_theme.dart';
 import 'package:flutter_store_fic7/utils/dimensions.dart';
 import 'package:flutter_store_fic7/utils/images.dart';
+import 'package:flutter_store_fic7/utils/price_extension.dart';
 
 class ProductItemWidget extends StatelessWidget {
   final Product product;
-  const ProductItemWidget({
-    Key? key,
-    required this.product,
-  }) : super(key: key);
+  const ProductItemWidget({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // Navigator.push(context, MaterialPageRoute(builder: (context) {
-        //   return const ProductDetail();
-        // }));
+        context.read<ProductBloc>().add(ProductEvent.getProduct(product.id));
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const ProductDetail()),
+        );
       },
       child: Container(
         height: Dimensions.cardHeight,
@@ -88,7 +91,7 @@ class ProductItemWidget extends StatelessWidget {
                           style: robotoRegular.copyWith(
                               fontSize: Dimensions.fontSizeSmall,
                               fontWeight: FontWeight.w400),
-                          maxLines: 2,
+                          maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
                         const SizedBox(
@@ -101,10 +104,12 @@ class ProductItemWidget extends StatelessWidget {
                               rating: double.parse('10.0'),
                               size: 18,
                             ),
-                            Text('(20)',
-                                style: robotoRegular.copyWith(
-                                  fontSize: Dimensions.fontSizeSmall,
-                                )),
+                            Text(
+                              '(20)',
+                              style: robotoRegular.copyWith(
+                                fontSize: Dimensions.fontSizeSmall,
+                              ),
+                            ),
                           ],
                         ),
                         const SizedBox(
@@ -115,7 +120,7 @@ class ProductItemWidget extends StatelessWidget {
                           height: 2,
                         ),
                         Text(
-                          product.price,
+                          product.price.formatPrice(),
                           style: titilliumSemiBold.copyWith(
                             color: ColorResources.getPrimary(context),
                           ),

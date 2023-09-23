@@ -1,5 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_store_fic7/domain/entities/category.dart';
 import 'package:flutter_store_fic7/domain/entities/product.dart';
+import 'package:flutter_store_fic7/domain/usecases/product/get_product_by_category.dart';
 import 'package:flutter_store_fic7/domain/usecases/product/get_products.dart';
 import 'package:flutter_store_fic7/domain/usecases/product/get_product.dart';
 import 'package:flutter_store_fic7/utils/failure.dart';
@@ -12,19 +14,20 @@ part 'product_bloc.freezed.dart';
 class ProductBloc extends Bloc<ProductEvent, ProductState> {
   final GetProduct _getProduct;
   final GetProducts _getProducts;
+  final GetProductsByCategory _getProductsByCategory;
 
   ProductBloc({
     required GetProduct getProduct,
     required GetProducts getProducts,
+    required GetProductsByCategory getProductsByCategory,
   })  : _getProduct = getProduct,
         _getProducts = getProducts,
+        _getProductsByCategory = getProductsByCategory,
         super(const _Initial()) {
     on<_GetProduct>(_onGetProduct);
     on<_GetProducts>(_onGetProducts);
+    on<_GetProductsByCategory>(_onGetProductsByCategory);
   }
-
-  int _currentCollectionNumber = 0;
-  List<Product> _loadedProducts = [];
 
   _onGetProduct(_GetProduct event, Emitter<ProductState> emit) async {
     _Loaded lastState;
@@ -52,26 +55,65 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   }
 
   _onGetProducts(_GetProducts event, Emitter<ProductState> emit) async {
-    if (state is _Loaded) {
-      _loadedProducts = List.from((state as _Loaded).products);
+    int currentCollectionNumber = 0;
+    List<Product> loadedProducts = [];
+
+    if (event.isNext && state is _Loaded) {
+      loadedProducts = List.from((state as _Loaded).products);
     }
 
     emit(const _Loading());
 
     try {
       final result = await _getProducts.execute(
-        page: event.isNext ? _currentCollectionNumber + 1 : null,
+        page: event.isNext ? currentCollectionNumber + 1 : null,
         authToken: event.authToken,
       );
 
       result.fold(
         (failure) => throw failure,
         (products) {
-          _loadedProducts.addAll(products.collections);
-          _currentCollectionNumber = products.collectionNumber;
+          loadedProducts.addAll(products.collections);
+          currentCollectionNumber = products.collectionNumber;
           emit(_Loaded(
-            products: _loadedProducts,
-            canLoadMore: products.totalCollections > _currentCollectionNumber,
+            products: loadedProducts,
+            canLoadMore: products.totalCollections > currentCollectionNumber,
+          ));
+        },
+      );
+    } on Failure catch (failure) {
+      emit(_Error(failure.message));
+    }
+  }
+
+  _onGetProductsByCategory(
+    _GetProductsByCategory event,
+    Emitter<ProductState> emit,
+  ) async {
+    int currentCollectionNumber = 0;
+    List<Product> loadedProducts = [];
+    if (event.isNext && state is _Loaded) {
+      loadedProducts = List.from((state as _Loaded).products);
+    }
+
+    emit(const _Loading());
+
+    try {
+      final result = await _getProductsByCategory.execute(
+        event.category.id,
+        page: event.isNext ? currentCollectionNumber + 1 : null,
+        authToken: event.authToken,
+      );
+
+      result.fold(
+        (failure) => throw failure,
+        (products) {
+          loadedProducts.addAll(products.collections);
+          currentCollectionNumber = products.collectionNumber;
+
+          emit(_Loaded(
+            products: loadedProducts,
+            canLoadMore: products.totalCollections > currentCollectionNumber,
           ));
         },
       );

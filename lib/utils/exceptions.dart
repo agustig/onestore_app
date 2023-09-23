@@ -6,6 +6,8 @@ class DatabaseException implements Exception {
   DatabaseException(this.message);
 }
 
+class UnauthorizeException implements Exception {}
+
 class ValidatorException implements Exception {
   final Map<String, List<String>> _messages;
 

@@ -16,6 +16,11 @@ void main() {
       final result = tUserModel.toEntity();
       expect(result, tUser);
     });
+
+    test('should be valid UserModel when import from entity', () {
+      final result = UserModel.fromEntity(tUser);
+      expect(result, tUserModel);
+    });
   });
 
   group('Json/Map:', () {

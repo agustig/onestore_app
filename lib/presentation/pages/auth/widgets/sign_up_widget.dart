@@ -93,6 +93,7 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                     ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(authMessage),
+                    backgroundColor: Colors.blue,
                   ),
                 ),
               );

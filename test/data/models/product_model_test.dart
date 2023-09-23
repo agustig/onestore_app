@@ -16,6 +16,11 @@ void main() {
       final result = tProductModel.toEntity();
       expect(result, tProduct);
     });
+
+    test('should be valid ProductModel when import from entity', () {
+      final result = ProductModel.fromEntity(tProduct);
+      expect(result, tProductModel);
+    });
   });
 
   group('Json/Map:', () {

@@ -73,6 +73,23 @@ class ProductModel extends Equatable {
     );
   }
 
+  factory ProductModel.fromEntity(Product entity) {
+    return ProductModel(
+      id: entity.id,
+      name: entity.name,
+      description: entity.description,
+      price: entity.price,
+      imageUrl: entity.imageUrl,
+      seller:
+          (entity.seller != null) ? UserModel.fromEntity(entity.seller!) : null,
+      category: (entity.category != null)
+          ? CategoryModel.fromEntity(entity.category!)
+          : null,
+      createdAt: entity.createdAt,
+      updatedAt: entity.updatedAt,
+    );
+  }
+
   @override
   List<Object?> get props {
     return [

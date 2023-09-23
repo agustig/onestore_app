@@ -122,4 +122,56 @@ void main() {
       },
     );
   });
+
+  group('getProductsByCategory function:', () {
+    const tProductCollectionModel = testProductCollectionModel;
+    const tProductCollection = testProductCollection;
+
+    mockCaller() => mockDataSource.getProductsByCategory(1);
+    repositoryCaller() => repository.getProductsByCategory(1);
+
+    test(
+        'should return a Product collection when data source execute is success',
+        () async {
+      // Arrange
+      when(() => mockCaller()).thenAnswer((_) async => tProductCollectionModel);
+      // Act
+      final call = await repositoryCaller();
+      // Assert
+      verify(() => mockCaller());
+      expect(call, equals(const Right(tProductCollection)));
+    });
+
+    test(
+      'should return ConnectionFailure when the device is not connected to internet',
+      () async {
+        // arrange
+        when(() => mockCaller()).thenThrow(
+            const SocketException('Failed to connect to the network'));
+        // act
+        final result = await repositoryCaller();
+        // assert
+        verify(() => mockCaller());
+        expect(
+          result,
+          equals(
+            const Left(ConnectionFailure('Failed to connect to the network')),
+          ),
+        );
+      },
+    );
+
+    test(
+      'should return ServerFailure when the call to remote data source is unsuccessful',
+      () async {
+        // arrange
+        when(() => mockCaller()).thenThrow(ServerException());
+        // act
+        final result = await repositoryCaller();
+        // assert
+        verify(() => mockCaller());
+        expect(result, equals(const Left(ServerFailure('Server Failure'))));
+      },
+    );
+  });
 }

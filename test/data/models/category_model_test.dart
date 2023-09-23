@@ -16,6 +16,11 @@ void main() {
       final result = tCategoryModel.toEntity();
       expect(result, tCategory);
     });
+
+    test('should be valid CategoryModel when import from entity', () {
+      final result = CategoryModel.fromEntity(tCategory);
+      expect(result, tCategoryModel);
+    });
   });
 
   group('Json/Map:', () {

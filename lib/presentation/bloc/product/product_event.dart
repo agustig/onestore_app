@@ -11,4 +11,10 @@ class ProductEvent with _$ProductEvent {
     String? authToken,
     @Default(false) bool isNext,
   }) = _GetProducts;
+
+  const factory ProductEvent.getProductsByCategory(
+    Category category, {
+    String? authToken,
+    @Default(false) bool isNext,
+  }) = _GetProductsByCategory;
 }

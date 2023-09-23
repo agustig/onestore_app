@@ -19,6 +19,13 @@ class ConnectionFailure extends Failure {
   List<Object?> get props => [super.message];
 }
 
+class UnauthorizeFailure extends Failure {
+  const UnauthorizeFailure(super.message);
+
+  @override
+  List<Object?> get props => [super.message];
+}
+
 class ValidatorFailure extends Failure {
   final Map<String, List<String>> messages;
   const ValidatorFailure(this.messages) : super('');

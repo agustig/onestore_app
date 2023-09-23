@@ -6,6 +6,7 @@ class BaseApi {
   final logoutPath = "$api/logout";
   final categoryPath = "$api/categories";
   final productPath = "$api/products";
+  final orderPath = "$api/order";
 
   Map<String, String> headers = {
     "Content-Type": "application/json; charset=UTF-8",

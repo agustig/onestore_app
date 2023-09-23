@@ -48,6 +48,16 @@ class CategoryModel extends Equatable {
     );
   }
 
+  factory CategoryModel.fromEntity(Category entity) {
+    return CategoryModel(
+      id: entity.id,
+      name: entity.name,
+      description: entity.description,
+      createdAt: entity.createdAt,
+      updatedAt: entity.updatedAt,
+    );
+  }
+
   @override
   List<Object?> get props {
     return [

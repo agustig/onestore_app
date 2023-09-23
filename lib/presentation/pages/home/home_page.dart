@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_store_fic7/presentation/bloc/order/order_bloc.dart';
 import 'package:flutter_store_fic7/presentation/bloc/product/product_bloc.dart';
 import 'package:flutter_store_fic7/presentation/pages/base_widgets/title_row.dart';
+import 'package:flutter_store_fic7/presentation/pages/cart/cart_page.dart';
 import 'package:flutter_store_fic7/presentation/pages/home/widgets/banner_widget.dart';
 import 'package:flutter_store_fic7/presentation/pages/home/widgets/category_widget.dart';
-import 'package:flutter_store_fic7/presentation/pages/home/widgets/product_item_widget.dart';
+import 'package:flutter_store_fic7/presentation/pages/product/widgets/product_item_widget.dart';
 import 'package:flutter_store_fic7/utils/color_resource.dart';
 import 'package:flutter_store_fic7/utils/custom_theme.dart';
 import 'package:flutter_store_fic7/utils/dimensions.dart';
@@ -15,7 +17,14 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final scrollController = ScrollController();
+    final orderBloc = context.watch<OrderBloc>();
+    final orderQuantities = orderBloc.state.cart.map((item) => item.quantity);
+
+    final numberOrderItem = orderQuantities.isEmpty
+        ? 0
+        : orderBloc.state.cart
+            .map((item) => item.quantity)
+            .reduce((a, b) => a + b);
 
     return Scaffold(
       backgroundColor: ColorResources.homeBg,
@@ -24,7 +33,6 @@ class HomePage extends StatelessWidget {
           child: Stack(
         children: [
           CustomScrollView(
-            controller: scrollController,
             slivers: [
               SliverAppBar(
                 floating: true,
@@ -37,9 +45,10 @@ class HomePage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(right: 12.0),
                     child: IconButton(
-                      onPressed: () {
-                        // TODO: add function for the card
-                      },
+                      onPressed: () =>
+                          Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const CartPage(),
+                      )),
                       icon: Stack(
                         clipBehavior: Clip.none,
                         children: [
@@ -56,7 +65,7 @@ class HomePage extends StatelessWidget {
                               radius: 7,
                               backgroundColor: ColorResources.red,
                               child: Text(
-                                '10',
+                                '$numberOrderItem',
                                 style: titilliumSemiBold.copyWith(
                                   color: ColorResources.white,
                                   fontSize: Dimensions.fontSizeExtraSmall,
@@ -140,10 +149,11 @@ class HomePage extends StatelessWidget {
               SliverToBoxAdapter(
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(
-                      Dimensions.homePagePadding,
-                      Dimensions.paddingSizeSmall,
-                      Dimensions.paddingSizeDefault,
-                      Dimensions.paddingSizeSmall),
+                    Dimensions.homePagePadding,
+                    Dimensions.paddingSizeSmall,
+                    Dimensions.paddingSizeDefault,
+                    Dimensions.paddingSizeSmall,
+                  ),
                   child: Column(
                     children: [
                       const BannerWidget(),
@@ -165,8 +175,9 @@ class HomePage extends StatelessWidget {
                       ),
                       const Padding(
                         padding: EdgeInsets.symmetric(
-                            horizontal: Dimensions.paddingSizeExtraSmall,
-                            vertical: Dimensions.paddingSizeExtraSmall),
+                          horizontal: Dimensions.paddingSizeExtraSmall,
+                          vertical: Dimensions.paddingSizeExtraSmall,
+                        ),
                         child: Row(children: [
                           Expanded(child: Text('Products', style: titleHeader)),
                         ]),

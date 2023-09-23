@@ -56,6 +56,44 @@ void main() {
     );
   });
 
+  group('getProductsByCategory():', () {
+    const tProductCollection = testProductCollectionModel;
+    final tProductsApiResponse = jsonReader(
+      'dummy_data/products_api_response.json',
+    );
+
+    mockApiCaller() => mockClient.get(
+          Uri.parse('${baseApi.productPath}?category-id=1'),
+          headers: baseApi.headers,
+        );
+
+    test('should return List ProductCollection when response code is 200',
+        () async {
+      // Arrange
+      when(() => mockApiCaller())
+          .thenAnswer((_) async => http.Response(tProductsApiResponse, 200));
+
+      // Act
+      final call = await dataSource.getProductsByCategory(1);
+
+      // Assert
+      expect(call, tProductCollection);
+    });
+
+    test(
+      'should throw a ServerException when the response code is 404 or other',
+      () async {
+        // arrange
+        when(() => mockApiCaller()).thenAnswer(
+            (_) async => http.Response('{"message": "Not Found"}', 404));
+        // act
+        final call = dataSource.getProductsByCategory(1);
+        // assert
+        expect(() => call, throwsA(isA<ServerException>()));
+      },
+    );
+  });
+
   group('getProduct():', () {
     final tProduct = testProductModelDetail;
     final tProductApiResponse = jsonReader(

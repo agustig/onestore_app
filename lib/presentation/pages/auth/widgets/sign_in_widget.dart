@@ -78,7 +78,10 @@ class _SignInWidgetState extends State<SignInWidget> {
                 },
                 loaded: (authMessage) =>
                     ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(authMessage)),
+                  SnackBar(
+                    content: Text(authMessage),
+                    backgroundColor: Colors.blue,
+                  ),
                 ),
               );
             },
