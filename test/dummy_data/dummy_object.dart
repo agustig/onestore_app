@@ -1,5 +1,6 @@
 import 'package:flutter_store_fic7/data/models/api_response_model.dart';
 import 'package:flutter_store_fic7/data/models/auth_model.dart';
+import 'package:flutter_store_fic7/data/models/banner_model.dart';
 import 'package:flutter_store_fic7/data/models/category_model.dart';
 import 'package:flutter_store_fic7/data/models/collection_model.dart';
 import 'package:flutter_store_fic7/data/models/order_item_model.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_store_fic7/data/models/order_model.dart';
 import 'package:flutter_store_fic7/data/models/product_model.dart';
 import 'package:flutter_store_fic7/data/models/user_model.dart';
 import 'package:flutter_store_fic7/domain/entities/auth.dart';
+import 'package:flutter_store_fic7/domain/entities/banner.dart';
 import 'package:flutter_store_fic7/domain/entities/category.dart';
 import 'package:flutter_store_fic7/domain/entities/collection.dart';
 import 'package:flutter_store_fic7/domain/entities/order.dart';
@@ -226,4 +228,18 @@ final testOrder2 = Order(
   totalPrice: 1240664,
   createdAt: DateTime.parse('2023-09-21T04:29:38.000Z'),
   updatedAt: DateTime.parse('2023-09-21T04:29:40.000Z'),
+);
+
+const testBannerModel = BannerModel(
+  id: 1,
+  name: 'mollitia',
+  bannerUrl: 'https://via.placeholder.com/300x200.png/00cccc?text=illo',
+  isEnabled: false,
+);
+
+const testBanner = Banner(
+  id: 1,
+  name: 'mollitia',
+  bannerUrl: 'https://via.placeholder.com/300x200.png/00cccc?text=illo',
+  isEnabled: false,
 );

@@ -1,4 +1,3 @@
-import 'package:flutter_store_fic7/data/api/base_api.dart';
 import 'package:flutter_store_fic7/data/data_sources/product_remote_data_source.dart';
 import 'package:flutter_store_fic7/utils/exceptions.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -18,7 +17,7 @@ void main() {
     dataSource = ProductRemoteDataSourceImpl(client: mockClient);
   });
 
-  final baseApi = BaseApi();
+  final mockRemoteApi = MockRemoteApi();
 
   group('getProducts():', () {
     const tProductCollection = testProductCollectionModel;
@@ -26,8 +25,10 @@ void main() {
       'dummy_data/products_api_response.json',
     );
 
-    mockApiCaller() => mockClient.get(Uri.parse(baseApi.productPath),
-        headers: baseApi.headers);
+    mockApiCaller() => mockClient.get(
+          Uri.parse(mockRemoteApi.productPath),
+          headers: mockRemoteApi.headers,
+        );
 
     test('should return List ProductCollection when response code is 200',
         () async {
@@ -63,8 +64,8 @@ void main() {
     );
 
     mockApiCaller() => mockClient.get(
-          Uri.parse('${baseApi.productPath}?category-id=1'),
-          headers: baseApi.headers,
+          Uri.parse('${mockRemoteApi.productPath}?category-id=1'),
+          headers: mockRemoteApi.headers,
         );
 
     test('should return List ProductCollection when response code is 200',
@@ -100,8 +101,10 @@ void main() {
       'dummy_data/product_api_response.json',
     );
 
-    mockApiCaller() => mockClient.get(Uri.parse('${baseApi.productPath}/1'),
-        headers: baseApi.headers);
+    mockApiCaller() => mockClient.get(
+          Uri.parse('${mockRemoteApi.productPath}/1'),
+          headers: mockRemoteApi.headers,
+        );
 
     test('should return ProductModel when response code is 200', () async {
       // Arrange

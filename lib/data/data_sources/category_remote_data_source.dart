@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_store_fic7/data/api/base_api.dart';
+import 'package:flutter_store_fic7/data/api/remote_api.dart';
 import 'package:flutter_store_fic7/data/models/api_response_model.dart';
 import 'package:flutter_store_fic7/data/models/category_model.dart';
 import 'package:flutter_store_fic7/data/models/collection_model.dart';
@@ -12,7 +12,8 @@ abstract class CategoryRemoteDataSource {
   Future<CategoryModel> getCategory({required int id, String? authToken});
 }
 
-class CategoryRemoteDataSourceImpl extends BaseApi
+class CategoryRemoteDataSourceImpl
+    with RemoteApi
     implements CategoryRemoteDataSource {
   final http.Client client;
 

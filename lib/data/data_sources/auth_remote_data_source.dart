@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_store_fic7/data/api/base_api.dart';
+import 'package:flutter_store_fic7/data/api/remote_api.dart';
 import 'package:flutter_store_fic7/data/models/api_response_model.dart';
 import 'package:flutter_store_fic7/data/models/auth_model.dart';
 import 'package:flutter_store_fic7/utils/exceptions.dart';
@@ -22,7 +22,7 @@ abstract class AuthRemoteDataSource {
   Future<bool> logout(String authToken);
 }
 
-class AuthRemoteDataSourceImpl extends BaseApi implements AuthRemoteDataSource {
+class AuthRemoteDataSourceImpl with RemoteApi implements AuthRemoteDataSource {
   final http.Client client;
 
   AuthRemoteDataSourceImpl({required this.client});

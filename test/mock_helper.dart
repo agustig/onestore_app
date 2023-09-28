@@ -1,3 +1,4 @@
+import 'package:flutter_store_fic7/data/api/remote_api.dart';
 import 'package:flutter_store_fic7/data/data_sources/auth_local_data_source.dart';
 import 'package:flutter_store_fic7/data/data_sources/auth_remote_data_source.dart';
 import 'package:flutter_store_fic7/data/data_sources/category_remote_data_source.dart';
@@ -77,3 +78,6 @@ class MockGetProducts extends Mock implements GetProducts {}
 class MockGetProductsByCategory extends Mock implements GetProductsByCategory {}
 
 class MockPlaceOrder extends Mock implements PlaceOrder {}
+
+// Mock Mixins
+class MockRemoteApi with RemoteApi {}

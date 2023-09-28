@@ -1,4 +1,3 @@
-import 'package:flutter_store_fic7/data/api/base_api.dart';
 import 'package:flutter_store_fic7/data/data_sources/category_remote_data_source.dart';
 import 'package:flutter_store_fic7/utils/exceptions.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -18,7 +17,7 @@ void main() {
     dataSource = CategoryRemoteDataSourceImpl(client: mockClient);
   });
 
-  final baseApi = BaseApi();
+  final mockRemoteApi = MockRemoteApi();
 
   group('getCategories():', () {
     const tCategoryCollection = testCategoryCollectionModel;
@@ -26,8 +25,10 @@ void main() {
       'dummy_data/categories_api_response.json',
     );
 
-    mockApiCaller() => mockClient.get(Uri.parse(baseApi.categoryPath),
-        headers: baseApi.headers);
+    mockApiCaller() => mockClient.get(
+          Uri.parse(mockRemoteApi.categoryPath),
+          headers: mockRemoteApi.headers,
+        );
 
     test('should return List CategoryCollection when response code is 200',
         () async {
@@ -62,8 +63,10 @@ void main() {
       'dummy_data/category_api_response.json',
     );
 
-    mockApiCaller() => mockClient.get(Uri.parse('${baseApi.categoryPath}/1'),
-        headers: baseApi.headers);
+    mockApiCaller() => mockClient.get(
+          Uri.parse('${mockRemoteApi.categoryPath}/1'),
+          headers: mockRemoteApi.headers,
+        );
 
     test('should return CategoryModel when response code is 200', () async {
       // Arrange

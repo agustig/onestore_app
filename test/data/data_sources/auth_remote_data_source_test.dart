@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter_store_fic7/data/api/base_api.dart';
 import 'package:flutter_store_fic7/data/data_sources/auth_remote_data_source.dart';
 import 'package:flutter_store_fic7/data/models/auth_model.dart';
 import 'package:flutter_store_fic7/utils/exceptions.dart';
@@ -21,7 +20,7 @@ void main() {
     dataSource = AuthRemoteDataSourceImpl(client: mockClient);
   });
 
-  final baseApi = BaseApi();
+  final mockRemoteApi = MockRemoteApi();
 
   group('Login function:', () {
     final tAuthModel = AuthModel.fromMap(
@@ -41,8 +40,8 @@ void main() {
         );
 
     mockApiCaller() => mockClient.post(
-          Uri.parse(baseApi.loginPath),
-          headers: baseApi.headers,
+          Uri.parse(mockRemoteApi.loginPath),
+          headers: mockRemoteApi.headers,
           body: tAuthLoginData,
         );
 
@@ -95,7 +94,6 @@ void main() {
       'dummy_data/auth_api_response_400.json',
     );
     final tAuthRegisterData = json.encode(testAuthRegisterData);
-    final baseApi = BaseApi();
 
     dataSourceCaller() => dataSource.register(
           name: 'Mr. Manuela Zboncak III',
@@ -105,8 +103,8 @@ void main() {
         );
 
     mockApiCaller() => mockClient.post(
-          Uri.parse(baseApi.registerPath),
-          headers: baseApi.headers,
+          Uri.parse(mockRemoteApi.registerPath),
+          headers: mockRemoteApi.headers,
           body: tAuthRegisterData,
         );
 
@@ -154,8 +152,8 @@ void main() {
     dataSourceCaller() => dataSource.logout(tAuthToken);
 
     mockApiCaller() => mockClient.post(
-          Uri.parse(baseApi.logoutPath),
-          headers: baseApi.authyHeaders(tAuthToken),
+          Uri.parse(mockRemoteApi.logoutPath),
+          headers: mockRemoteApi.authyHeaders(tAuthToken),
         );
 
     test('should return true when the response code is 200', () async {

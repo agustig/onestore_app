@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_store_fic7/data/api/base_api.dart';
+import 'package:flutter_store_fic7/data/api/remote_api.dart';
 import 'package:flutter_store_fic7/data/models/api_response_model.dart';
 import 'package:flutter_store_fic7/data/models/collection_model.dart';
 import 'package:flutter_store_fic7/data/models/product_model.dart';
@@ -20,7 +20,8 @@ abstract class ProductRemoteDataSource {
   Future<ProductModel> getProduct({required int id, String? authToken});
 }
 
-class ProductRemoteDataSourceImpl extends BaseApi
+class ProductRemoteDataSourceImpl
+    with RemoteApi
     implements ProductRemoteDataSource {
   final http.Client client;
 

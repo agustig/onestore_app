@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_store_fic7/data/api/base_api.dart';
+import 'package:flutter_store_fic7/data/api/remote_api.dart';
 import 'package:flutter_store_fic7/data/models/api_response_model.dart';
 import 'package:flutter_store_fic7/data/models/order_item_model.dart';
 import 'package:flutter_store_fic7/data/models/order_model.dart';
@@ -15,7 +15,8 @@ abstract class OrderRemoteDataSource {
   });
 }
 
-class OrderRemoteDataSourceImpl extends BaseApi
+class OrderRemoteDataSourceImpl
+    with RemoteApi
     implements OrderRemoteDataSource {
   final http.Client client;
 
