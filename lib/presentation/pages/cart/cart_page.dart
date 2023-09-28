@@ -112,7 +112,7 @@ class CartPage extends StatelessWidget {
                   }
                 },
                 child: Container(
-                  width: MediaQuery.of(context).size.width / 3.5,
+                  width: MediaQuery.sizeOf(context).width / 3.5,
                   decoration: BoxDecoration(
                     color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.circular(

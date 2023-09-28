@@ -39,8 +39,8 @@ class _AuthPageState extends State<AuthPage> {
         children: [
           Image.asset(
             Images.background,
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.sizeOf(context).height,
+            width: MediaQuery.sizeOf(context).width,
             fit: BoxFit.fill,
           ),
           SafeArea(
@@ -63,7 +63,7 @@ class _AuthPageState extends State<AuthPage> {
                         right: Dimensions.marginSizeExtraSmall,
                         left: 0,
                         child: Container(
-                          width: MediaQuery.of(context).size.width,
+                          width: MediaQuery.sizeOf(context).width,
                           height: 1,
                           color: ColorResources.getGainsboro(context),
                         ),

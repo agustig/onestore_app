@@ -114,8 +114,8 @@ class TitleRow extends StatelessWidget {
                   child: Stack(
                     children: [
                       Container(
-                        width: MediaQuery.of(context).size.width / 8,
-                        height: MediaQuery.of(context).size.width / 6.5,
+                        width: MediaQuery.sizeOf(context).width / 8,
+                        height: MediaQuery.sizeOf(context).width / 6.5,
                         decoration: BoxDecoration(
                           borderRadius: const BorderRadius.only(
                             topRight: Radius.circular(
@@ -188,15 +188,18 @@ class TimerBox extends StatelessWidget {
   final bool isBorder;
   final String? day;
 
-  const TimerBox(
-      {Key? key, required this.time, this.isBorder = false, this.day})
-      : super(key: key);
+  const TimerBox({
+    super.key,
+    required this.time,
+    this.isBorder = false,
+    this.day,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width / 9.5,
-      height: MediaQuery.of(context).size.width / 9.5,
+      width: MediaQuery.sizeOf(context).width / 9.5,
+      height: MediaQuery.sizeOf(context).width / 9.5,
       decoration: BoxDecoration(
         color: isBorder ? null : ColorResources.getPrimary(context),
         border: isBorder

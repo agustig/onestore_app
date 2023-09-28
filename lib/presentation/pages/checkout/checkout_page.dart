@@ -173,7 +173,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
           Container(
             height: 40,
-            width: MediaQuery.of(context).size.width,
+            width: MediaQuery.sizeOf(context).width,
             decoration: BoxDecoration(
               color: Theme.of(context).primaryColor.withOpacity(0.055),
             ),
@@ -300,7 +300,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 child: Builder(
               builder: (context) => Padding(
                 padding: EdgeInsets.symmetric(
-                  horizontal: MediaQuery.of(context).size.width / 2.9,
+                  horizontal: MediaQuery.sizeOf(context).width / 2.9,
                 ),
                 child: Text('Proceed',
                     style: titilliumSemiBold.copyWith(

@@ -16,8 +16,8 @@ class SplashPage extends StatelessWidget {
         clipBehavior: Clip.none,
         children: [
           Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.sizeOf(context).width,
+            height: MediaQuery.sizeOf(context).height,
             color: ColorResources.getPrimary(context),
             child: CustomPaint(
               painter: SplashPainter(),

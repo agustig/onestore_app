@@ -61,12 +61,12 @@ class ProductItemWidget extends StatelessWidget {
                     child: FadeInImage.assetNetwork(
                       placeholder: Images.placeholder,
                       fit: BoxFit.cover,
-                      height: MediaQuery.of(context).size.width / 2.45,
+                      height: MediaQuery.sizeOf(context).width / 2.45,
                       image: product.imageUrl,
                       imageErrorBuilder: (c, o, s) => Image.asset(
                         Images.placeholder,
                         fit: BoxFit.cover,
-                        height: MediaQuery.of(context).size.width / 2.45,
+                        height: MediaQuery.sizeOf(context).width / 2.45,
                       ),
                     ),
                   ),

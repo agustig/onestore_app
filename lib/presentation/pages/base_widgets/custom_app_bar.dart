@@ -29,7 +29,7 @@ class CustomAppBar extends StatelessWidget {
           Images.toolbarBackground,
           fit: BoxFit.fill,
           height: 50 + MediaQuery.of(context).padding.top,
-          width: MediaQuery.of(context).size.width,
+          width: MediaQuery.sizeOf(context).width,
           color: Colors.white,
         ),
       ),

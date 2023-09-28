@@ -40,7 +40,7 @@ class ProductImageView extends StatelessWidget {
             ),
             child: Stack(children: [
               SizedBox(
-                height: MediaQuery.of(context).size.width,
+                height: MediaQuery.sizeOf(context).width,
                 child: PageView.builder(
                   itemCount: 3,
                   itemBuilder: (context, index) {
@@ -48,13 +48,13 @@ class ProductImageView extends StatelessWidget {
                       child: FadeInImage.assetNetwork(
                         fit: BoxFit.cover,
                         placeholder: Images.placeholder,
-                        height: MediaQuery.of(context).size.width,
-                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.sizeOf(context).width,
+                        width: MediaQuery.sizeOf(context).width,
                         image: imageUrl,
                         imageErrorBuilder: (c, o, s) => Image.asset(
                           Images.placeholder,
-                          height: MediaQuery.of(context).size.width,
-                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.sizeOf(context).width,
+                          width: MediaQuery.sizeOf(context).width,
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -79,8 +79,9 @@ class ProductImageView extends StatelessWidget {
                     const Spacer(),
                     const Padding(
                       padding: EdgeInsets.only(
-                          right: Dimensions.paddingSizeDefault,
-                          bottom: Dimensions.paddingSizeDefault),
+                        right: Dimensions.paddingSizeDefault,
+                        bottom: Dimensions.paddingSizeDefault,
+                      ),
                       child: Text('1'),
                     ),
                   ],
@@ -114,9 +115,11 @@ class ProductImageView extends StatelessWidget {
                             color: Theme.of(context).primaryColor,
                             shape: BoxShape.circle,
                           ),
-                          child: Icon(Icons.share,
-                              color: Theme.of(context).cardColor,
-                              size: Dimensions.iconSizeSmall),
+                          child: Icon(
+                            Icons.share,
+                            color: Theme.of(context).cardColor,
+                            size: Dimensions.iconSizeSmall,
+                          ),
                         ),
                       ),
                     )

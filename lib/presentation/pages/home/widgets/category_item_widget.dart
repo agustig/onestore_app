@@ -30,8 +30,8 @@ class CategoryItemWidget extends StatelessWidget {
       },
       child: Column(children: [
         Container(
-          height: MediaQuery.of(context).size.width / 5,
-          width: MediaQuery.of(context).size.width / 5,
+          height: MediaQuery.sizeOf(context).width / 5,
+          width: MediaQuery.sizeOf(context).width / 5,
           decoration: BoxDecoration(
             border: Border.all(
                 color: Theme.of(context).primaryColor.withOpacity(.2)),
