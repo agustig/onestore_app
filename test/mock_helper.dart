@@ -1,10 +1,12 @@
 import 'package:flutter_store_fic7/data/api/remote_api.dart';
 import 'package:flutter_store_fic7/data/data_sources/auth_local_data_source.dart';
 import 'package:flutter_store_fic7/data/data_sources/auth_remote_data_source.dart';
+import 'package:flutter_store_fic7/data/data_sources/banner_remote_data_source.dart';
 import 'package:flutter_store_fic7/data/data_sources/category_remote_data_source.dart';
 import 'package:flutter_store_fic7/data/data_sources/order_remote_data_source.dart';
 import 'package:flutter_store_fic7/data/data_sources/product_remote_data_source.dart';
 import 'package:flutter_store_fic7/domain/repositories/auth_repository.dart';
+import 'package:flutter_store_fic7/domain/repositories/banner_repository.dart';
 import 'package:flutter_store_fic7/domain/repositories/category_repository.dart';
 import 'package:flutter_store_fic7/domain/repositories/order_repository.dart';
 import 'package:flutter_store_fic7/domain/repositories/product_repository.dart';
@@ -14,6 +16,7 @@ import 'package:flutter_store_fic7/domain/usecases/auth/auth_logout.dart';
 import 'package:flutter_store_fic7/domain/usecases/auth/auth_register.dart';
 import 'package:flutter_store_fic7/domain/usecases/auth/auth_remove_token.dart';
 import 'package:flutter_store_fic7/domain/usecases/auth/auth_save_token.dart';
+import 'package:flutter_store_fic7/domain/usecases/banner/get_banners.dart';
 import 'package:flutter_store_fic7/domain/usecases/category/get_categories.dart';
 import 'package:flutter_store_fic7/domain/usecases/category/get_category.dart';
 import 'package:flutter_store_fic7/domain/usecases/order/place_order.dart';
@@ -45,6 +48,9 @@ class MockProductRemoteDataSource extends Mock
 
 class MockOrderRemoteDataSource extends Mock implements OrderRemoteDataSource {}
 
+class MockBannerRemoteDataSource extends Mock
+    implements BannerRemoteDataSource {}
+
 // Mock Repositories
 class MockAuthRepository extends Mock implements AuthRepository {}
 
@@ -53,6 +59,8 @@ class MockCategoryRepository extends Mock implements CategoryRepository {}
 class MockProductRepository extends Mock implements ProductRepository {}
 
 class MockOrderRepository extends Mock implements OrderRepository {}
+
+class MockBannerRepository extends Mock implements BannerRepository {}
 
 // Mock Use Cases
 class MockAuthRegister extends Mock implements AuthRegister {}
@@ -78,6 +86,8 @@ class MockGetProducts extends Mock implements GetProducts {}
 class MockGetProductsByCategory extends Mock implements GetProductsByCategory {}
 
 class MockPlaceOrder extends Mock implements PlaceOrder {}
+
+class MockGetBanners extends Mock implements GetBanners {}
 
 // Mock Mixins
 class MockRemoteApi with RemoteApi {}

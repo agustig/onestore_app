@@ -1,0 +1,12 @@
+{
+  "status": 200,
+  "message": "Banners retrieved",
+  "data": [
+    {
+      "id": 1,
+      "name": "mollitia",
+      "banner_url": "https://via.placeholder.com/300x200.png/00cccc?text=illo",
+      "is_enabled": false
+    }
+  ]
+}

@@ -2,14 +2,17 @@ import 'dart:io';
 
 import 'package:flutter_store_fic7/data/data_sources/auth_local_data_source.dart';
 import 'package:flutter_store_fic7/data/data_sources/auth_remote_data_source.dart';
+import 'package:flutter_store_fic7/data/data_sources/banner_remote_data_source.dart';
 import 'package:flutter_store_fic7/data/data_sources/category_remote_data_source.dart';
 import 'package:flutter_store_fic7/data/data_sources/order_remote_data_source.dart';
 import 'package:flutter_store_fic7/data/data_sources/product_remote_data_source.dart';
 import 'package:flutter_store_fic7/data/repositories/auth_repository_impl.dart';
+import 'package:flutter_store_fic7/data/repositories/banner_repository_impl.dart';
 import 'package:flutter_store_fic7/data/repositories/category_repository_impl.dart';
 import 'package:flutter_store_fic7/data/repositories/order_repository_impl.dart';
 import 'package:flutter_store_fic7/data/repositories/product_repository_impl.dart';
 import 'package:flutter_store_fic7/domain/repositories/auth_repository.dart';
+import 'package:flutter_store_fic7/domain/repositories/banner_repository.dart';
 import 'package:flutter_store_fic7/domain/repositories/category_repository.dart';
 import 'package:flutter_store_fic7/domain/repositories/order_repository.dart';
 import 'package:flutter_store_fic7/domain/repositories/product_repository.dart';
@@ -19,6 +22,7 @@ import 'package:flutter_store_fic7/domain/usecases/auth/auth_logout.dart';
 import 'package:flutter_store_fic7/domain/usecases/auth/auth_register.dart';
 import 'package:flutter_store_fic7/domain/usecases/auth/auth_remove_token.dart';
 import 'package:flutter_store_fic7/domain/usecases/auth/auth_save_token.dart';
+import 'package:flutter_store_fic7/domain/usecases/banner/get_banners.dart';
 import 'package:flutter_store_fic7/domain/usecases/category/get_categories.dart';
 import 'package:flutter_store_fic7/domain/usecases/category/get_category.dart';
 import 'package:flutter_store_fic7/domain/usecases/order/place_order.dart';
@@ -27,6 +31,7 @@ import 'package:flutter_store_fic7/domain/usecases/product/get_product_by_catego
 import 'package:flutter_store_fic7/domain/usecases/product/get_products.dart';
 import 'package:flutter_store_fic7/presentation/bloc/auth/auth_bloc.dart';
 import 'package:flutter_store_fic7/presentation/bloc/auth_status/auth_status_bloc.dart';
+import 'package:flutter_store_fic7/presentation/bloc/banner/banner_bloc.dart';
 import 'package:flutter_store_fic7/presentation/bloc/category/category_bloc.dart';
 import 'package:flutter_store_fic7/presentation/bloc/order/order_bloc.dart';
 import 'package:flutter_store_fic7/presentation/bloc/product/product_bloc.dart';
@@ -65,6 +70,7 @@ void init() {
     ),
   );
   locator.registerFactory(() => OrderBloc(placeOrder: locator()));
+  locator.registerFactory(() => BannerBloc(getBanners: locator()));
 
   // Usecases
   locator.registerLazySingleton(() => AuthRegister(locator()));
@@ -79,6 +85,7 @@ void init() {
   locator.registerLazySingleton(() => GetProducts(locator()));
   locator.registerLazySingleton(() => GetProductsByCategory(locator()));
   locator.registerLazySingleton(() => PlaceOrder(locator()));
+  locator.registerLazySingleton(() => GetBanners(locator()));
 
   // Repositories
   locator.registerLazySingleton<AuthRepository>(
@@ -93,6 +100,8 @@ void init() {
       () => ProductRepositoryImpl(locator()));
   locator.registerLazySingleton<OrderRepository>(
       () => OrderRepositoryImpl(locator()));
+  locator.registerLazySingleton<BannerRepository>(
+      () => BannerRepositoryImpl(locator()));
 
   // DataSources
   locator.registerLazySingleton<AuthRemoteDataSource>(
@@ -105,6 +114,8 @@ void init() {
       () => ProductRemoteDataSourceImpl(client: locator()));
   locator.registerLazySingleton<OrderRemoteDataSource>(
       () => OrderRemoteDataSourceImpl(client: locator()));
+  locator.registerLazySingleton<BannerRemoteDataSource>(
+      () => BannerRemoteDataSourceImpl(client: locator()));
 
   // External
   locator.registerLazySingleton(() => http.Client());
