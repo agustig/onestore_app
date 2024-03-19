@@ -1,5 +1,5 @@
 mixin RemoteApi {
-  static const base = "https://ficlab.agustig.dev";
+  static const base = "https://onestore.agustig.dev";
   static const api = "$base/api";
   final loginPath = "$api/login";
   final registerPath = "$api/register";
