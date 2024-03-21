@@ -130,7 +130,7 @@ class OrderBloc extends HydratedBloc<OrderEvent, OrderState> {
   }
 
   _onAddCheckoutStatus(_AddCheckoutStatus event, Emitter<OrderState> emit) {
-    final currentProcessingOrder = state.processing!;
+    final currentProcessingOrder = event.order;
     if (event.isPlaced) {
       emit(
         state.copyWith(

@@ -75,7 +75,7 @@ void main() {
         bloc.add(addProductCaller),
         bloc.add(addItemToCartCaller),
         bloc.add(checkoutCartCaller),
-        bloc.add(const OrderEvent.addCheckoutStatus(true))
+        bloc.add(OrderEvent.addCheckoutStatus(order: tOrder2, isPlaced: true))
       ],
       expect: () => [
         state.copyWith(currentItem: tOrderItem),
@@ -121,7 +121,7 @@ void main() {
         bloc.add(addProductCaller),
         bloc.add(addItemToCartCaller),
         bloc.add(checkoutCartCaller),
-        bloc.add(const OrderEvent.addCheckoutStatus(false))
+        bloc.add(OrderEvent.addCheckoutStatus(order: tOrder2, isPlaced: false))
       ],
       expect: () => [
         state.copyWith(currentItem: tOrderItem),
@@ -221,7 +221,7 @@ void main() {
         bloc.add(removeFromCartCaller),
         bloc.add(addProductCaller),
         bloc.add(buySingleCaller),
-        bloc.add(const OrderEvent.addCheckoutStatus(true))
+        bloc.add(OrderEvent.addCheckoutStatus(order: tOrder, isPlaced: true))
       ],
       expect: () => [
         state.copyWith(currentItem: tOrderItem),
@@ -259,7 +259,7 @@ void main() {
         bloc.add(removeFromCartCaller),
         bloc.add(addProductCaller),
         bloc.add(buySingleCaller),
-        bloc.add(const OrderEvent.addCheckoutStatus(false))
+        bloc.add(OrderEvent.addCheckoutStatus(order: tOrder, isPlaced: false))
       ],
       expect: () => [
         state.copyWith(currentItem: tOrderItem),
