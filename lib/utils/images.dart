@@ -1,5 +1,4 @@
 class Images {
-  static const String splashLogo = 'assets/images/cwb_splash.png';
   static const String background = 'assets/images/background.jpg';
   static const String logoWithNameImage = 'assets/images/onestore_name.png';
   static const String homeImage = 'assets/images/home.png';
