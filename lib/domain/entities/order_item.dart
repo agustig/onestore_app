@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:flutter_store_fic7/domain/entities/product.dart';
+import 'package:onestore_app/domain/entities/product.dart';
 
 class OrderItem extends Equatable {
   final Product product;

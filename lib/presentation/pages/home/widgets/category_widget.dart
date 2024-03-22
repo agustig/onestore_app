@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_store_fic7/presentation/bloc/category/category_bloc.dart';
-import 'package:flutter_store_fic7/presentation/pages/home/widgets/category_item_widget.dart';
+import 'package:onestore_app/presentation/bloc/category/category_bloc.dart';
+import 'package:onestore_app/presentation/pages/home/widgets/category_item_widget.dart';
 
 class CategoryWidget extends StatelessWidget {
   const CategoryWidget({super.key});

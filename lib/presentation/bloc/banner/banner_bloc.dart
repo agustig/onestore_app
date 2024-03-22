@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_store_fic7/domain/entities/banner.dart';
-import 'package:flutter_store_fic7/domain/usecases/banner/get_banners.dart';
-import 'package:flutter_store_fic7/utils/failure.dart';
+import 'package:onestore_app/domain/entities/banner.dart';
+import 'package:onestore_app/domain/usecases/banner/get_banners.dart';
+import 'package:onestore_app/utils/failure.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'banner_event.dart';

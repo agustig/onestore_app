@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_store_fic7/domain/repositories/auth_repository.dart';
-import 'package:flutter_store_fic7/utils/failure.dart';
+import 'package:onestore_app/domain/repositories/auth_repository.dart';
+import 'package:onestore_app/utils/failure.dart';
 
 class AuthGetToken {
   final AuthRepository repository;

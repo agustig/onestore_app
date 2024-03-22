@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_store_fic7/domain/usecases/banner/get_banners.dart';
+import 'package:onestore_app/domain/usecases/banner/get_banners.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

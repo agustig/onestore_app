@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:flutter_store_fic7/domain/entities/user.dart';
+import 'package:onestore_app/domain/entities/user.dart';
 
 class Auth extends Equatable {
   final String token;

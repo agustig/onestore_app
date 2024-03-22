@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_store_fic7/data/models/product_model.dart';
+import 'package:onestore_app/data/models/product_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../dummy_data/dummy_object.dart';

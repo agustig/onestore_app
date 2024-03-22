@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:flutter_store_fic7/domain/entities/category.dart';
-import 'package:flutter_store_fic7/presentation/bloc/product/product_bloc.dart';
-import 'package:flutter_store_fic7/presentation/pages/base_widgets/custom_app_bar.dart';
-import 'package:flutter_store_fic7/presentation/pages/product/widgets/product_item_widget.dart';
-import 'package:flutter_store_fic7/utils/color_resource.dart';
-import 'package:flutter_store_fic7/utils/dimensions.dart';
+import 'package:onestore_app/domain/entities/category.dart';
+import 'package:onestore_app/presentation/bloc/product/product_bloc.dart';
+import 'package:onestore_app/presentation/pages/base_widgets/custom_app_bar.dart';
+import 'package:onestore_app/presentation/pages/product/widgets/product_item_widget.dart';
+import 'package:onestore_app/utils/color_resource.dart';
+import 'package:onestore_app/utils/dimensions.dart';
 
 class CategoryProductsPage extends StatelessWidget {
   final Category category;

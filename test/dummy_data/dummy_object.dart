@@ -1,20 +1,20 @@
-import 'package:flutter_store_fic7/data/models/api_response_model.dart';
-import 'package:flutter_store_fic7/data/models/auth_model.dart';
-import 'package:flutter_store_fic7/data/models/banner_model.dart';
-import 'package:flutter_store_fic7/data/models/category_model.dart';
-import 'package:flutter_store_fic7/data/models/collection_model.dart';
-import 'package:flutter_store_fic7/data/models/order_item_model.dart';
-import 'package:flutter_store_fic7/data/models/order_model.dart';
-import 'package:flutter_store_fic7/data/models/product_model.dart';
-import 'package:flutter_store_fic7/data/models/user_model.dart';
-import 'package:flutter_store_fic7/domain/entities/auth.dart';
-import 'package:flutter_store_fic7/domain/entities/banner.dart';
-import 'package:flutter_store_fic7/domain/entities/category.dart';
-import 'package:flutter_store_fic7/domain/entities/collection.dart';
-import 'package:flutter_store_fic7/domain/entities/order.dart';
-import 'package:flutter_store_fic7/domain/entities/order_item.dart';
-import 'package:flutter_store_fic7/domain/entities/product.dart';
-import 'package:flutter_store_fic7/domain/entities/user.dart';
+import 'package:onestore_app/data/models/api_response_model.dart';
+import 'package:onestore_app/data/models/auth_model.dart';
+import 'package:onestore_app/data/models/banner_model.dart';
+import 'package:onestore_app/data/models/category_model.dart';
+import 'package:onestore_app/data/models/collection_model.dart';
+import 'package:onestore_app/data/models/order_item_model.dart';
+import 'package:onestore_app/data/models/order_model.dart';
+import 'package:onestore_app/data/models/product_model.dart';
+import 'package:onestore_app/data/models/user_model.dart';
+import 'package:onestore_app/domain/entities/auth.dart';
+import 'package:onestore_app/domain/entities/banner.dart';
+import 'package:onestore_app/domain/entities/category.dart';
+import 'package:onestore_app/domain/entities/collection.dart';
+import 'package:onestore_app/domain/entities/order.dart';
+import 'package:onestore_app/domain/entities/order_item.dart';
+import 'package:onestore_app/domain/entities/product.dart';
+import 'package:onestore_app/domain/entities/user.dart';
 
 const testUserModel = UserModel(
   id: 14,
