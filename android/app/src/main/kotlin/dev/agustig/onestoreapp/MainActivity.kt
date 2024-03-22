@@ -1,4 +1,4 @@
-package com.example.flutter_store_fic7
+package dev.agustig.onestoreapp
 
 import io.flutter.embedding.android.FlutterActivity
 
