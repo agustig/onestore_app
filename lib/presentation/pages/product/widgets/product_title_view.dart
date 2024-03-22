@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_store_fic7/domain/entities/product.dart';
-import 'package:flutter_store_fic7/utils/color_resource.dart';
-import 'package:flutter_store_fic7/utils/custom_theme.dart';
-import 'package:flutter_store_fic7/utils/dimensions.dart';
-import 'package:flutter_store_fic7/utils/price_extension.dart';
+import 'package:onestore_app/domain/entities/product.dart';
+import 'package:onestore_app/utils/color_resource.dart';
+import 'package:onestore_app/utils/custom_theme.dart';
+import 'package:onestore_app/utils/dimensions.dart';
+import 'package:onestore_app/utils/price_extension.dart';
 
 class ProductTitleView extends StatelessWidget {
   final Product product;

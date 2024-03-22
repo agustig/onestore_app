@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-import 'package:flutter_store_fic7/data/api/remote_api.dart';
-import 'package:flutter_store_fic7/data/models/api_response_model.dart';
-import 'package:flutter_store_fic7/data/models/order_item_model.dart';
-import 'package:flutter_store_fic7/data/models/order_model.dart';
-import 'package:flutter_store_fic7/utils/exceptions.dart';
+import 'package:onestore_app/data/api/remote_api.dart';
+import 'package:onestore_app/data/models/api_response_model.dart';
+import 'package:onestore_app/data/models/order_item_model.dart';
+import 'package:onestore_app/data/models/order_model.dart';
+import 'package:onestore_app/utils/exceptions.dart';
 import 'package:http/http.dart' as http;
 
 abstract class OrderRemoteDataSource {

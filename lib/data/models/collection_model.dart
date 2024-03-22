@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_store_fic7/data/models/category_model.dart';
-import 'package:flutter_store_fic7/data/models/product_model.dart';
-import 'package:flutter_store_fic7/domain/entities/category.dart';
-import 'package:flutter_store_fic7/domain/entities/collection.dart';
-import 'package:flutter_store_fic7/domain/entities/product.dart';
+import 'package:onestore_app/data/models/category_model.dart';
+import 'package:onestore_app/data/models/product_model.dart';
+import 'package:onestore_app/domain/entities/category.dart';
+import 'package:onestore_app/domain/entities/collection.dart';
+import 'package:onestore_app/domain/entities/product.dart';
 
 class CollectionModel<T extends dynamic> extends Equatable {
   final int collectionNumber;

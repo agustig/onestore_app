@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_store_fic7/presentation/bloc/order/order_bloc.dart';
-import 'package:flutter_store_fic7/presentation/bloc/product/product_bloc.dart';
-import 'package:flutter_store_fic7/presentation/pages/base_widgets/title_row.dart';
-import 'package:flutter_store_fic7/presentation/pages/cart/cart_page.dart';
-import 'package:flutter_store_fic7/presentation/pages/home/widgets/banner_widget.dart';
-import 'package:flutter_store_fic7/presentation/pages/home/widgets/category_widget.dart';
-import 'package:flutter_store_fic7/presentation/pages/product/widgets/product_item_widget.dart';
-import 'package:flutter_store_fic7/utils/color_resource.dart';
-import 'package:flutter_store_fic7/utils/custom_theme.dart';
-import 'package:flutter_store_fic7/utils/dimensions.dart';
-import 'package:flutter_store_fic7/utils/images.dart';
+import 'package:onestore_app/presentation/bloc/order/order_bloc.dart';
+import 'package:onestore_app/presentation/bloc/product/product_bloc.dart';
+import 'package:onestore_app/presentation/pages/base_widgets/title_row.dart';
+import 'package:onestore_app/presentation/pages/cart/cart_page.dart';
+import 'package:onestore_app/presentation/pages/home/widgets/banner_widget.dart';
+import 'package:onestore_app/presentation/pages/home/widgets/category_widget.dart';
+import 'package:onestore_app/presentation/pages/product/widgets/product_item_widget.dart';
+import 'package:onestore_app/utils/color_resource.dart';
+import 'package:onestore_app/utils/custom_theme.dart';
+import 'package:onestore_app/utils/dimensions.dart';
+import 'package:onestore_app/utils/images.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

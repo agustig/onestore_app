@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_store_fic7/presentation/bloc/order/order_bloc.dart';
-import 'package:flutter_store_fic7/presentation/pages/payment/payment_failed_page.dart';
-import 'package:flutter_store_fic7/presentation/pages/payment/payment_success_page.dart';
+import 'package:onestore_app/presentation/bloc/order/order_bloc.dart';
+import 'package:onestore_app/presentation/pages/payment/payment_failed_page.dart';
+import 'package:onestore_app/presentation/pages/payment/payment_success_page.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class PaymentPage extends StatefulWidget {

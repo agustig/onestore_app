@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_store_fic7/presentation/bloc/auth/auth_bloc.dart';
-import 'package:flutter_store_fic7/presentation/pages/base_widgets/buttons/custom_button.dart';
-import 'package:flutter_store_fic7/presentation/pages/base_widgets/text_field/custom_text_field.dart';
-import 'package:flutter_store_fic7/presentation/pages/base_widgets/text_field/password_text_field.dart';
-import 'package:flutter_store_fic7/utils/dimensions.dart';
+import 'package:onestore_app/presentation/bloc/auth/auth_bloc.dart';
+import 'package:onestore_app/presentation/pages/base_widgets/buttons/custom_button.dart';
+import 'package:onestore_app/presentation/pages/base_widgets/text_field/custom_text_field.dart';
+import 'package:onestore_app/presentation/pages/base_widgets/text_field/password_text_field.dart';
+import 'package:onestore_app/utils/dimensions.dart';
 
 class SignUpWidget extends StatefulWidget {
   const SignUpWidget({super.key});

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_store_fic7/presentation/bloc/auth_status/auth_status_bloc.dart';
-import 'package:flutter_store_fic7/presentation/bloc/order/order_bloc.dart';
-import 'package:flutter_store_fic7/presentation/pages/base_widgets/amount_widget.dart';
-import 'package:flutter_store_fic7/presentation/pages/payment/payment_page.dart';
-import 'package:flutter_store_fic7/utils/color_resource.dart';
-import 'package:flutter_store_fic7/utils/custom_theme.dart';
-import 'package:flutter_store_fic7/utils/dimensions.dart';
-import 'package:flutter_store_fic7/utils/images.dart';
-import 'package:flutter_store_fic7/utils/price_extension.dart';
+import 'package:onestore_app/presentation/bloc/auth_status/auth_status_bloc.dart';
+import 'package:onestore_app/presentation/bloc/order/order_bloc.dart';
+import 'package:onestore_app/presentation/pages/base_widgets/amount_widget.dart';
+import 'package:onestore_app/presentation/pages/payment/payment_page.dart';
+import 'package:onestore_app/utils/color_resource.dart';
+import 'package:onestore_app/utils/custom_theme.dart';
+import 'package:onestore_app/utils/dimensions.dart';
+import 'package:onestore_app/utils/images.dart';
+import 'package:onestore_app/utils/price_extension.dart';
 
 class CheckoutPage extends StatefulWidget {
   const CheckoutPage({super.key});

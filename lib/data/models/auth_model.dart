@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_store_fic7/data/models/user_model.dart';
-import 'package:flutter_store_fic7/domain/entities/auth.dart';
+import 'package:onestore_app/data/models/user_model.dart';
+import 'package:onestore_app/domain/entities/auth.dart';
 
 class AuthModel extends Equatable {
   final String token;

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_store_fic7/presentation/bloc/product/product_bloc.dart';
-import 'package:flutter_store_fic7/presentation/pages/product/widgets/bottom_cart_view.dart';
-import 'package:flutter_store_fic7/presentation/pages/product/widgets/product_image_view.dart';
-import 'package:flutter_store_fic7/presentation/pages/product/widgets/product_specification.dart';
-import 'package:flutter_store_fic7/presentation/pages/product/widgets/product_title_view.dart';
-import 'package:flutter_store_fic7/utils/custom_theme.dart';
-import 'package:flutter_store_fic7/utils/dimensions.dart';
+import 'package:onestore_app/presentation/bloc/product/product_bloc.dart';
+import 'package:onestore_app/presentation/pages/product/widgets/bottom_cart_view.dart';
+import 'package:onestore_app/presentation/pages/product/widgets/product_image_view.dart';
+import 'package:onestore_app/presentation/pages/product/widgets/product_specification.dart';
+import 'package:onestore_app/presentation/pages/product/widgets/product_title_view.dart';
+import 'package:onestore_app/utils/custom_theme.dart';
+import 'package:onestore_app/utils/dimensions.dart';
 
 class ProductDetail extends StatelessWidget {
   const ProductDetail({super.key});

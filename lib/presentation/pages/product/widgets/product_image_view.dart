@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_store_fic7/presentation/pages/product/widgets/favorite_button.dart';
-import 'package:flutter_store_fic7/utils/color_resource.dart';
-import 'package:flutter_store_fic7/utils/dimensions.dart';
-import 'package:flutter_store_fic7/utils/images.dart';
+import 'package:onestore_app/presentation/pages/product/widgets/favorite_button.dart';
+import 'package:onestore_app/utils/color_resource.dart';
+import 'package:onestore_app/utils/dimensions.dart';
+import 'package:onestore_app/utils/images.dart';
 
 class ProductImageView extends StatelessWidget {
   final String imageUrl;

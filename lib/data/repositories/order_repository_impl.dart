@@ -1,13 +1,13 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart' hide Order;
-import 'package:flutter_store_fic7/data/data_sources/order_remote_data_source.dart';
-import 'package:flutter_store_fic7/data/models/order_item_model.dart';
-import 'package:flutter_store_fic7/domain/entities/order.dart';
-import 'package:flutter_store_fic7/domain/entities/order_item.dart';
-import 'package:flutter_store_fic7/domain/repositories/order_repository.dart';
-import 'package:flutter_store_fic7/utils/exceptions.dart';
-import 'package:flutter_store_fic7/utils/failure.dart';
+import 'package:onestore_app/data/data_sources/order_remote_data_source.dart';
+import 'package:onestore_app/data/models/order_item_model.dart';
+import 'package:onestore_app/domain/entities/order.dart';
+import 'package:onestore_app/domain/entities/order_item.dart';
+import 'package:onestore_app/domain/repositories/order_repository.dart';
+import 'package:onestore_app/utils/exceptions.dart';
+import 'package:onestore_app/utils/failure.dart';
 
 class OrderRepositoryImpl implements OrderRepository {
   final OrderRemoteDataSource dataSource;

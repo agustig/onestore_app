@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_store_fic7/main.dart';
-import 'package:flutter_store_fic7/presentation/bloc/auth/auth_bloc.dart';
-import 'package:flutter_store_fic7/presentation/bloc/auth_status/auth_status_bloc.dart';
-import 'package:flutter_store_fic7/presentation/pages/home/home_page.dart';
-import 'package:flutter_store_fic7/utils/images.dart';
+import 'package:onestore_app/main.dart';
+import 'package:onestore_app/presentation/bloc/auth/auth_bloc.dart';
+import 'package:onestore_app/presentation/bloc/auth_status/auth_status_bloc.dart';
+import 'package:onestore_app/presentation/pages/home/home_page.dart';
+import 'package:onestore_app/utils/images.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});

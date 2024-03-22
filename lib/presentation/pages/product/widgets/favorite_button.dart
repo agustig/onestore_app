@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_store_fic7/utils/images.dart';
+import 'package:onestore_app/utils/images.dart';
 
 class FavoriteButton extends StatelessWidget {
   final Color backgroundColor;

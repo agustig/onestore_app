@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:flutter_store_fic7/domain/entities/order_item.dart';
+import 'package:onestore_app/domain/entities/order_item.dart';
 
 class Order extends Equatable {
   final int id;

@@ -1,6 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_store_fic7/presentation/pages/dashboard/dashboard_page.dart';
+import 'package:onestore_app/presentation/pages/dashboard/dashboard_page.dart';
 
 class PaymentSuccessPage extends StatefulWidget {
   const PaymentSuccessPage({super.key});

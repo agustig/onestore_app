@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_store_fic7/domain/entities/order_item.dart';
-import 'package:flutter_store_fic7/presentation/bloc/order/order_bloc.dart';
-import 'package:flutter_store_fic7/presentation/bloc/product/product_bloc.dart';
-import 'package:flutter_store_fic7/presentation/pages/product/product_detail.dart';
-import 'package:flutter_store_fic7/utils/color_resource.dart';
-import 'package:flutter_store_fic7/utils/custom_theme.dart';
-import 'package:flutter_store_fic7/utils/dimensions.dart';
-import 'package:flutter_store_fic7/utils/images.dart';
-import 'package:flutter_store_fic7/utils/price_extension.dart';
+import 'package:onestore_app/domain/entities/order_item.dart';
+import 'package:onestore_app/presentation/bloc/order/order_bloc.dart';
+import 'package:onestore_app/presentation/bloc/product/product_bloc.dart';
+import 'package:onestore_app/presentation/pages/product/product_detail.dart';
+import 'package:onestore_app/utils/color_resource.dart';
+import 'package:onestore_app/utils/custom_theme.dart';
+import 'package:onestore_app/utils/dimensions.dart';
+import 'package:onestore_app/utils/images.dart';
+import 'package:onestore_app/utils/price_extension.dart';
 
 class CartWidget extends StatelessWidget {
   final OrderItem orderItem;

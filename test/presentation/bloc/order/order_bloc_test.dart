@@ -1,10 +1,10 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter_store_fic7/presentation/bloc/order/order_bloc.dart';
-import 'package:flutter_store_fic7/utils/failure.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:onestore_app/presentation/bloc/order/order_bloc.dart';
+import 'package:onestore_app/utils/failure.dart';
 
 import '../../../dummy_data/dummy_object.dart';
 import '../../../mock_helper.dart';
