@@ -11,9 +11,9 @@ import 'package:flutter_store_fic7/utils/images.dart';
 class CategoryItemWidget extends StatelessWidget {
   final Category category;
   const CategoryItemWidget({
-    Key? key,
+    super.key,
     required this.category,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -101,7 +101,7 @@ class _BannerWidgetState extends State<BannerWidget> {
                                     : Colors.grey,
                                 size: 10,
                               );
-                            }).toList()
+                            })
                           ],
                         ),
                       ),

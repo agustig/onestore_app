@@ -4,8 +4,7 @@ class RatingBar extends StatelessWidget {
   final double rating;
   final double size;
 
-  const RatingBar({Key? key, required this.rating, this.size = 18})
-      : super(key: key);
+  const RatingBar({super.key, required this.rating, this.size = 18});
 
   @override
   Widget build(BuildContext context) {
