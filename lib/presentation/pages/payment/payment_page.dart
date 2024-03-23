@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_store_fic7/presentation/bloc/order/order_bloc.dart';
-import 'package:flutter_store_fic7/presentation/pages/payment/payment_failed_page.dart';
-import 'package:flutter_store_fic7/presentation/pages/payment/payment_success_page.dart';
+import 'package:onestore_app/presentation/bloc/order/order_bloc.dart';
+import 'package:onestore_app/presentation/pages/payment/payment_failed_page.dart';
+import 'package:onestore_app/presentation/pages/payment/payment_success_page.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class PaymentPage extends StatefulWidget {
@@ -23,6 +23,7 @@ class _PaymentPageState extends State<PaymentPage> {
   @override
   void initState() {
     final orderBloc = context.read<OrderBloc>();
+    final processingOrder = orderBloc.state.processing!;
     controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(const Color(0x00000000))
@@ -33,7 +34,10 @@ class _PaymentPageState extends State<PaymentPage> {
           },
           onPageStarted: (String url) {
             if (url.contains('status_code=202&transaction_status=deny')) {
-              orderBloc.add(const OrderEvent.addCheckoutStatus(false));
+              orderBloc.add(OrderEvent.addCheckoutStatus(
+                order: processingOrder,
+                isPlaced: false,
+              ));
               Navigator.pushAndRemoveUntil(context,
                   MaterialPageRoute(builder: (_) {
                 return const PaymentFailedPage();
@@ -42,7 +46,10 @@ class _PaymentPageState extends State<PaymentPage> {
               });
             }
             if (url.contains('status_code=200&transaction_status=settlement')) {
-              orderBloc.add(const OrderEvent.addCheckoutStatus(true));
+              orderBloc.add(OrderEvent.addCheckoutStatus(
+                order: processingOrder,
+                isPlaced: true,
+              ));
               Navigator.pushAndRemoveUntil(context,
                   MaterialPageRoute(builder: (_) {
                 return const PaymentSuccessPage();
@@ -53,7 +60,10 @@ class _PaymentPageState extends State<PaymentPage> {
           },
           onPageFinished: (String url) {
             if (url.contains('status_code=202&transaction_status=deny')) {
-              orderBloc.add(const OrderEvent.addCheckoutStatus(false));
+              orderBloc.add(OrderEvent.addCheckoutStatus(
+                order: processingOrder,
+                isPlaced: false,
+              ));
               Navigator.pushAndRemoveUntil(context,
                   MaterialPageRoute(builder: (_) {
                 return const PaymentFailedPage();
@@ -62,7 +72,10 @@ class _PaymentPageState extends State<PaymentPage> {
               });
             }
             if (url.contains('status_code=200&transaction_status=settlement')) {
-              orderBloc.add(const OrderEvent.addCheckoutStatus(true));
+              orderBloc.add(OrderEvent.addCheckoutStatus(
+                order: processingOrder,
+                isPlaced: true,
+              ));
               Navigator.pushAndRemoveUntil(context,
                   MaterialPageRoute(builder: (_) {
                 return const PaymentSuccessPage();
@@ -87,7 +100,7 @@ class _PaymentPageState extends State<PaymentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: WebViewWidget(controller: controller!),
+      body: SafeArea(child: WebViewWidget(controller: controller!)),
     );
   }
 }

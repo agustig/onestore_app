@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_store_fic7/domain/entities/banner.dart';
+import 'package:onestore_app/domain/entities/banner.dart';
 
 class BannerModel extends Equatable {
   final int id;

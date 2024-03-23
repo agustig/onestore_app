@@ -1,10 +1,10 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter_store_fic7/presentation/bloc/order/order_bloc.dart';
-import 'package:flutter_store_fic7/utils/failure.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:onestore_app/presentation/bloc/order/order_bloc.dart';
+import 'package:onestore_app/utils/failure.dart';
 
 import '../../../dummy_data/dummy_object.dart';
 import '../../../mock_helper.dart';
@@ -75,7 +75,7 @@ void main() {
         bloc.add(addProductCaller),
         bloc.add(addItemToCartCaller),
         bloc.add(checkoutCartCaller),
-        bloc.add(const OrderEvent.addCheckoutStatus(true))
+        bloc.add(OrderEvent.addCheckoutStatus(order: tOrder2, isPlaced: true))
       ],
       expect: () => [
         state.copyWith(currentItem: tOrderItem),
@@ -121,7 +121,7 @@ void main() {
         bloc.add(addProductCaller),
         bloc.add(addItemToCartCaller),
         bloc.add(checkoutCartCaller),
-        bloc.add(const OrderEvent.addCheckoutStatus(false))
+        bloc.add(OrderEvent.addCheckoutStatus(order: tOrder2, isPlaced: false))
       ],
       expect: () => [
         state.copyWith(currentItem: tOrderItem),
@@ -221,7 +221,7 @@ void main() {
         bloc.add(removeFromCartCaller),
         bloc.add(addProductCaller),
         bloc.add(buySingleCaller),
-        bloc.add(const OrderEvent.addCheckoutStatus(true))
+        bloc.add(OrderEvent.addCheckoutStatus(order: tOrder, isPlaced: true))
       ],
       expect: () => [
         state.copyWith(currentItem: tOrderItem),
@@ -259,7 +259,7 @@ void main() {
         bloc.add(removeFromCartCaller),
         bloc.add(addProductCaller),
         bloc.add(buySingleCaller),
-        bloc.add(const OrderEvent.addCheckoutStatus(false))
+        bloc.add(OrderEvent.addCheckoutStatus(order: tOrder, isPlaced: false))
       ],
       expect: () => [
         state.copyWith(currentItem: tOrderItem),

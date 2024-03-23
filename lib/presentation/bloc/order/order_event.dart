@@ -14,8 +14,8 @@ class OrderEvent with _$OrderEvent {
     required String deliveryAddress,
     required String authToken,
   }) = _CheckoutCart;
-  const factory OrderEvent.addCheckoutStatus(bool isPlaced) =
-      _AddCheckoutStatus;
+  const factory OrderEvent.addCheckoutStatus(
+      {required Order order, required bool isPlaced}) = _AddCheckoutStatus;
   const factory OrderEvent.removeFromCart(OrderItem item) = _RemoveFromCart;
   const factory OrderEvent.incrementInCart(OrderItem item) = _IncrementInCart;
   const factory OrderEvent.decrementInCart(OrderItem product) =

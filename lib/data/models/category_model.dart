@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_store_fic7/domain/entities/category.dart';
+import 'package:onestore_app/domain/entities/category.dart';
 
 class CategoryModel extends Equatable {
   final int id;

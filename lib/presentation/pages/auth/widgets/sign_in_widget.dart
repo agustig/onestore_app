@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_store_fic7/presentation/bloc/auth/auth_bloc.dart';
-import 'package:flutter_store_fic7/presentation/pages/base_widgets/buttons/custom_button.dart';
-import 'package:flutter_store_fic7/presentation/pages/base_widgets/text_field/custom_text_field.dart';
-import 'package:flutter_store_fic7/presentation/pages/base_widgets/text_field/password_text_field.dart';
-import 'package:flutter_store_fic7/presentation/pages/dashboard/dashboard_page.dart';
-import 'package:flutter_store_fic7/utils/color_resource.dart';
-import 'package:flutter_store_fic7/utils/custom_theme.dart';
-import 'package:flutter_store_fic7/utils/dimensions.dart';
+import 'package:onestore_app/presentation/bloc/auth/auth_bloc.dart';
+import 'package:onestore_app/presentation/pages/base_widgets/buttons/custom_button.dart';
+import 'package:onestore_app/presentation/pages/base_widgets/text_field/custom_text_field.dart';
+import 'package:onestore_app/presentation/pages/base_widgets/text_field/password_text_field.dart';
+import 'package:onestore_app/presentation/pages/dashboard/dashboard_page.dart';
+import 'package:onestore_app/utils/color_resource.dart';
+import 'package:onestore_app/utils/custom_theme.dart';
+import 'package:onestore_app/utils/dimensions.dart';
 
 class SignInWidget extends StatefulWidget {
   const SignInWidget({super.key});

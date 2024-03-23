@@ -1,9 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_store_fic7/presentation/bloc/banner/banner_bloc.dart';
-import 'package:flutter_store_fic7/utils/color_resource.dart';
-import 'package:flutter_store_fic7/utils/images.dart';
+import 'package:onestore_app/presentation/bloc/banner/banner_bloc.dart';
+import 'package:onestore_app/utils/color_resource.dart';
+import 'package:onestore_app/utils/images.dart';
 import 'package:shimmer/shimmer.dart';
 
 class BannerWidget extends StatefulWidget {
@@ -101,7 +101,7 @@ class _BannerWidgetState extends State<BannerWidget> {
                                     : Colors.grey,
                                 size: 10,
                               );
-                            }).toList()
+                            })
                           ],
                         ),
                       ),

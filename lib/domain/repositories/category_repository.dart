@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_store_fic7/domain/entities/category.dart';
-import 'package:flutter_store_fic7/domain/entities/collection.dart';
-import 'package:flutter_store_fic7/utils/failure.dart';
+import 'package:onestore_app/domain/entities/category.dart';
+import 'package:onestore_app/domain/entities/collection.dart';
+import 'package:onestore_app/utils/failure.dart';
 
 abstract class CategoryRepository {
   Future<Either<Failure, Collection<Category>>> getCategories({

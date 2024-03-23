@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_store_fic7/presentation/bloc/order/order_bloc.dart';
-import 'package:flutter_store_fic7/presentation/pages/base_widgets/custom_app_bar.dart';
-import 'package:flutter_store_fic7/presentation/pages/cart/widgets/cart_widget.dart';
-import 'package:flutter_store_fic7/presentation/pages/checkout/checkout_page.dart';
-import 'package:flutter_store_fic7/utils/custom_theme.dart';
-import 'package:flutter_store_fic7/utils/dimensions.dart';
-import 'package:flutter_store_fic7/utils/price_extension.dart';
+import 'package:onestore_app/presentation/bloc/order/order_bloc.dart';
+import 'package:onestore_app/presentation/pages/base_widgets/custom_app_bar.dart';
+import 'package:onestore_app/presentation/pages/cart/widgets/cart_widget.dart';
+import 'package:onestore_app/presentation/pages/checkout/checkout_page.dart';
+import 'package:onestore_app/utils/custom_theme.dart';
+import 'package:onestore_app/utils/dimensions.dart';
+import 'package:onestore_app/utils/price_extension.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});

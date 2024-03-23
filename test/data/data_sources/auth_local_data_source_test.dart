@@ -1,5 +1,5 @@
-import 'package:flutter_store_fic7/data/data_sources/auth_local_data_source.dart';
-import 'package:flutter_store_fic7/utils/exceptions.dart';
+import 'package:onestore_app/data/data_sources/auth_local_data_source.dart';
+import 'package:onestore_app/utils/exceptions.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

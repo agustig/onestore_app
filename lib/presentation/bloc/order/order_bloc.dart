@@ -1,10 +1,10 @@
-import 'package:flutter_store_fic7/data/models/order_item_model.dart';
-import 'package:flutter_store_fic7/data/models/order_model.dart';
-import 'package:flutter_store_fic7/domain/entities/order.dart';
-import 'package:flutter_store_fic7/domain/entities/order_item.dart';
-import 'package:flutter_store_fic7/domain/entities/product.dart';
-import 'package:flutter_store_fic7/domain/usecases/order/place_order.dart';
-import 'package:flutter_store_fic7/utils/failure.dart';
+import 'package:onestore_app/data/models/order_item_model.dart';
+import 'package:onestore_app/data/models/order_model.dart';
+import 'package:onestore_app/domain/entities/order.dart';
+import 'package:onestore_app/domain/entities/order_item.dart';
+import 'package:onestore_app/domain/entities/product.dart';
+import 'package:onestore_app/domain/usecases/order/place_order.dart';
+import 'package:onestore_app/utils/failure.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
@@ -130,7 +130,7 @@ class OrderBloc extends HydratedBloc<OrderEvent, OrderState> {
   }
 
   _onAddCheckoutStatus(_AddCheckoutStatus event, Emitter<OrderState> emit) {
-    final currentProcessingOrder = state.processing!;
+    final currentProcessingOrder = event.order;
     if (event.isPlaced) {
       emit(
         state.copyWith(

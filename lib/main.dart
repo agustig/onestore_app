@@ -2,17 +2,18 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_store_fic7/injection.dart' as di;
-import 'package:flutter_store_fic7/presentation/bloc/auth/auth_bloc.dart';
-import 'package:flutter_store_fic7/presentation/bloc/auth_status/auth_status_bloc.dart';
-import 'package:flutter_store_fic7/presentation/bloc/banner/banner_bloc.dart';
-import 'package:flutter_store_fic7/presentation/bloc/category/category_bloc.dart';
-import 'package:flutter_store_fic7/presentation/bloc/order/order_bloc.dart';
-import 'package:flutter_store_fic7/presentation/bloc/product/product_bloc.dart';
-import 'package:flutter_store_fic7/presentation/pages/auth/auth_page.dart';
-import 'package:flutter_store_fic7/presentation/pages/dashboard/dashboard_page.dart';
-import 'package:flutter_store_fic7/utils/light_theme.dart';
+
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:onestore_app/injection.dart' as di;
+import 'package:onestore_app/presentation/bloc/auth/auth_bloc.dart';
+import 'package:onestore_app/presentation/bloc/auth_status/auth_status_bloc.dart';
+import 'package:onestore_app/presentation/bloc/banner/banner_bloc.dart';
+import 'package:onestore_app/presentation/bloc/category/category_bloc.dart';
+import 'package:onestore_app/presentation/bloc/order/order_bloc.dart';
+import 'package:onestore_app/presentation/bloc/product/product_bloc.dart';
+import 'package:onestore_app/presentation/pages/auth/auth_page.dart';
+import 'package:onestore_app/presentation/pages/dashboard/dashboard_page.dart';
+import 'package:onestore_app/utils/light_theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {

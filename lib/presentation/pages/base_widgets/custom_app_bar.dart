@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_store_fic7/utils/custom_theme.dart';
-import 'package:flutter_store_fic7/utils/dimensions.dart';
-import 'package:flutter_store_fic7/utils/images.dart';
+import 'package:onestore_app/utils/custom_theme.dart';
+import 'package:onestore_app/utils/dimensions.dart';
+import 'package:onestore_app/utils/images.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String? title;
@@ -11,13 +11,12 @@ class CustomAppBar extends StatelessWidget {
   final Function? onBackPressed;
 
   const CustomAppBar(
-      {Key? key,
+      {super.key,
       required this.title,
       this.isBackButtonExist = true,
       this.icon,
       this.onActionPressed,
-      this.onBackPressed})
-      : super(key: key);
+      this.onBackPressed});
 
   @override
   Widget build(BuildContext context) {

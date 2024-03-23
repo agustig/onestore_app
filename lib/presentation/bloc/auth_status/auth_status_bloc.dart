@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_store_fic7/domain/usecases/auth/auth_get_token.dart';
-import 'package:flutter_store_fic7/utils/failure.dart';
+import 'package:onestore_app/domain/usecases/auth/auth_get_token.dart';
+import 'package:onestore_app/utils/failure.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'auth_status_event.dart';

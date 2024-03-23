@@ -1,4 +1,4 @@
-import 'package:flutter_store_fic7/utils/exceptions.dart';
+import 'package:onestore_app/utils/exceptions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class AuthLocalDataSource {

@@ -1,5 +1,5 @@
-import 'package:flutter_store_fic7/data/data_sources/product_remote_data_source.dart';
-import 'package:flutter_store_fic7/utils/exceptions.dart';
+import 'package:onestore_app/data/data_sources/product_remote_data_source.dart';
+import 'package:onestore_app/utils/exceptions.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mocktail/mocktail.dart';

@@ -1,10 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_store_fic7/domain/entities/category.dart';
-import 'package:flutter_store_fic7/domain/entities/product.dart';
-import 'package:flutter_store_fic7/domain/usecases/product/get_product_by_category.dart';
-import 'package:flutter_store_fic7/domain/usecases/product/get_products.dart';
-import 'package:flutter_store_fic7/domain/usecases/product/get_product.dart';
-import 'package:flutter_store_fic7/utils/failure.dart';
+import 'package:onestore_app/domain/entities/category.dart';
+import 'package:onestore_app/domain/entities/product.dart';
+import 'package:onestore_app/domain/usecases/product/get_product_by_category.dart';
+import 'package:onestore_app/domain/usecases/product/get_products.dart';
+import 'package:onestore_app/domain/usecases/product/get_product.dart';
+import 'package:onestore_app/utils/failure.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'product_event.dart';

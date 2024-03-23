@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:flutter_store_fic7/data/models/category_model.dart';
-import 'package:flutter_store_fic7/data/models/user_model.dart';
-import 'package:flutter_store_fic7/domain/entities/product.dart';
+import 'package:onestore_app/data/models/category_model.dart';
+import 'package:onestore_app/data/models/user_model.dart';
+import 'package:onestore_app/domain/entities/product.dart';
 
 class ProductModel extends Equatable {
   final int id;

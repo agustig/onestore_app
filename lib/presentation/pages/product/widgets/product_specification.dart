@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_store_fic7/presentation/pages/base_widgets/title_row.dart';
-import 'package:flutter_store_fic7/utils/dimensions.dart';
+import 'package:onestore_app/presentation/pages/base_widgets/title_row.dart';
+import 'package:onestore_app/utils/dimensions.dart';
 
 class ProductSpecification extends StatelessWidget {
   final String productSpecification;

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_store_fic7/presentation/bloc/order/order_bloc.dart';
-import 'package:flutter_store_fic7/presentation/pages/base_widgets/buttons/custom_button.dart';
-import 'package:flutter_store_fic7/presentation/pages/checkout/checkout_page.dart';
-import 'package:flutter_store_fic7/utils/color_resource.dart';
-import 'package:flutter_store_fic7/utils/custom_theme.dart';
-import 'package:flutter_store_fic7/utils/dimensions.dart';
-import 'package:flutter_store_fic7/utils/images.dart';
-import 'package:flutter_store_fic7/utils/price_extension.dart';
+import 'package:onestore_app/presentation/bloc/order/order_bloc.dart';
+import 'package:onestore_app/presentation/pages/base_widgets/buttons/custom_button.dart';
+import 'package:onestore_app/presentation/pages/checkout/checkout_page.dart';
+import 'package:onestore_app/utils/color_resource.dart';
+import 'package:onestore_app/utils/custom_theme.dart';
+import 'package:onestore_app/utils/dimensions.dart';
+import 'package:onestore_app/utils/images.dart';
+import 'package:onestore_app/utils/price_extension.dart';
 
 class CartBottomSheet extends StatelessWidget {
   const CartBottomSheet({super.key});
