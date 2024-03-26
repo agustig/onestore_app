@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:onestore_app/main.dart';
-import 'package:onestore_app/presentation/bloc/auth/auth_bloc.dart';
-import 'package:onestore_app/presentation/bloc/auth_status/auth_status_bloc.dart';
 import 'package:onestore_app/presentation/pages/home/home_page.dart';
+import 'package:onestore_app/presentation/pages/more/more_page.dart';
 import 'package:onestore_app/utils/images.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -18,50 +15,10 @@ class _DashboardPageState extends State<DashboardPage> {
   final pageController = PageController();
   var currentIndex = 0;
   List<Widget> pages() {
-    final authBloc = context.watch<AuthBloc>();
-    final authStatusState = context.watch<AuthStatusBloc>().state;
-
     return <Widget>[
       const HomePage(),
       const Center(child: Text('Order')),
-      BlocListener<AuthBloc, AuthState>(
-        listener: (context, state) {
-          state.whenOrNull(
-            error: (message, _) {
-              if (message != null) {
-                return ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(message),
-                    backgroundColor: Colors.red,
-                  ),
-                );
-              }
-            },
-            loaded: (authMessage) => ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(authMessage),
-              ),
-            ),
-          );
-        },
-        child: Center(
-          child: authStatusState.maybeWhen(
-            orElse: () => const CircularProgressIndicator(),
-            authenticated: (_) => ElevatedButton(
-              onPressed: () => authBloc.add(const AuthEvent.logout()),
-              child: const Text('Logout'),
-            ),
-            unauthenticated: () => ElevatedButton(
-              onPressed: () => Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const MyApp(),
-                  )),
-              child: const Text('Login'),
-            ),
-          ),
-        ),
-      ),
+      const MorePage(),
     ];
   }
 

@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:onestore_app/injection.dart' as di;
 import 'package:onestore_app/presentation/bloc/auth/auth_bloc.dart';
