@@ -14,6 +14,7 @@ import 'package:onestore_app/domain/repositories/banner_repository.dart';
 import 'package:onestore_app/domain/repositories/category_repository.dart';
 import 'package:onestore_app/domain/repositories/order_repository.dart';
 import 'package:onestore_app/domain/repositories/product_repository.dart';
+import 'package:onestore_app/domain/repositories/profile_repository.dart';
 import 'package:onestore_app/domain/usecases/auth/auth_get_token.dart';
 import 'package:onestore_app/domain/usecases/auth/auth_login.dart';
 import 'package:onestore_app/domain/usecases/auth/auth_logout.dart';
@@ -65,6 +66,8 @@ class MockProductRepository extends Mock implements ProductRepository {}
 class MockOrderRepository extends Mock implements OrderRepository {}
 
 class MockBannerRepository extends Mock implements BannerRepository {}
+
+class MockProfileRepository extends Mock implements ProfileRepository {}
 
 // Mock Use Cases
 class MockAuthRegister extends Mock implements AuthRegister {}
