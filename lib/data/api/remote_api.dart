@@ -8,6 +8,7 @@ mixin RemoteApi {
   final productPath = "$api/products";
   final orderPath = "$api/order";
   final bannerPath = "$api/banners/";
+  final profilePath = "$api/profile";
 
   Map<String, String> headers = {
     "Content-Type": "application/json; charset=UTF-8",
