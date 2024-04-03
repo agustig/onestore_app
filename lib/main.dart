@@ -10,6 +10,7 @@ import 'package:onestore_app/presentation/bloc/banner/banner_bloc.dart';
 import 'package:onestore_app/presentation/bloc/category/category_bloc.dart';
 import 'package:onestore_app/presentation/bloc/order/order_bloc.dart';
 import 'package:onestore_app/presentation/bloc/product/product_bloc.dart';
+import 'package:onestore_app/presentation/bloc/profile/profile_bloc.dart';
 import 'package:onestore_app/presentation/pages/auth/auth_page.dart';
 import 'package:onestore_app/presentation/pages/dashboard/dashboard_page.dart';
 import 'package:onestore_app/utils/light_theme.dart';
@@ -47,6 +48,7 @@ class MyApp extends StatelessWidget {
             create: (_) =>
                 di.locator<BannerBloc>()..add(const BannerEvent.getAll())),
         BlocProvider(create: (_) => di.locator<OrderBloc>()),
+        BlocProvider(create: (_) => di.locator<ProfileBloc>()),
       ],
       child: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
@@ -59,7 +61,12 @@ class MyApp extends StatelessWidget {
             builder: (context, state) {
               return state.maybeWhen(
                 orElse: () => const AuthPage(),
-                authenticated: (authToken) => const DashboardPage(),
+                authenticated: (authToken) {
+                  context
+                      .read<ProfileBloc>()
+                      .add(ProfileEvent.getProfile(authToken));
+                  return const DashboardPage();
+                },
                 loading: () => const Scaffold(
                   body: Center(
                     child: CircularProgressIndicator(),

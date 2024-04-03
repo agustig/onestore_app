@@ -8,11 +8,13 @@ import 'package:onestore_app/data/data_sources/banner_remote_data_source.dart';
 import 'package:onestore_app/data/data_sources/category_remote_data_source.dart';
 import 'package:onestore_app/data/data_sources/order_remote_data_source.dart';
 import 'package:onestore_app/data/data_sources/product_remote_data_source.dart';
+import 'package:onestore_app/data/data_sources/profile_remote_data_source.dart';
 import 'package:onestore_app/domain/repositories/auth_repository.dart';
 import 'package:onestore_app/domain/repositories/banner_repository.dart';
 import 'package:onestore_app/domain/repositories/category_repository.dart';
 import 'package:onestore_app/domain/repositories/order_repository.dart';
 import 'package:onestore_app/domain/repositories/product_repository.dart';
+import 'package:onestore_app/domain/repositories/profile_repository.dart';
 import 'package:onestore_app/domain/usecases/auth/auth_get_token.dart';
 import 'package:onestore_app/domain/usecases/auth/auth_login.dart';
 import 'package:onestore_app/domain/usecases/auth/auth_logout.dart';
@@ -26,6 +28,7 @@ import 'package:onestore_app/domain/usecases/order/place_order.dart';
 import 'package:onestore_app/domain/usecases/product/get_product.dart';
 import 'package:onestore_app/domain/usecases/product/get_product_by_category.dart';
 import 'package:onestore_app/domain/usecases/product/get_products.dart';
+import 'package:onestore_app/domain/usecases/profile/get_profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // Mock External
@@ -51,6 +54,9 @@ class MockOrderRemoteDataSource extends Mock implements OrderRemoteDataSource {}
 class MockBannerRemoteDataSource extends Mock
     implements BannerRemoteDataSource {}
 
+class MockProfileRemoteDataSource extends Mock
+    implements ProfileRemoteDataSource {}
+
 // Mock Repositories
 class MockAuthRepository extends Mock implements AuthRepository {}
 
@@ -61,6 +67,8 @@ class MockProductRepository extends Mock implements ProductRepository {}
 class MockOrderRepository extends Mock implements OrderRepository {}
 
 class MockBannerRepository extends Mock implements BannerRepository {}
+
+class MockProfileRepository extends Mock implements ProfileRepository {}
 
 // Mock Use Cases
 class MockAuthRegister extends Mock implements AuthRegister {}
@@ -88,6 +96,8 @@ class MockGetProductsByCategory extends Mock implements GetProductsByCategory {}
 class MockPlaceOrder extends Mock implements PlaceOrder {}
 
 class MockGetBanners extends Mock implements GetBanners {}
+
+class MockGetProfile extends Mock implements GetProfile {}
 
 // Mock Mixins
 class MockRemoteApi with RemoteApi {}

@@ -1,0 +1,14 @@
+{
+  "status": 200,
+  "message": "Profile retrieved",
+  "data": {
+    "id": 14,
+    "name": "Mr. Manuela Zboncak III",
+    "role": "user",
+    "email": "marlee.ledner@example.net",
+    "phone": "(254) 980-1633",
+    "bio": "Non excepturi animi qui velit. Rerum repellendus iste eveniet consequuntur aut sapiente a. Repudiandae sed ullam aut.",
+    "created_at": "2024-04-03T06:36:48.000000Z",
+    "updated_at": "2024-04-03T06:36:48.000000Z"
+  }
+}
