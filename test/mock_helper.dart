@@ -28,6 +28,7 @@ import 'package:onestore_app/domain/usecases/order/place_order.dart';
 import 'package:onestore_app/domain/usecases/product/get_product.dart';
 import 'package:onestore_app/domain/usecases/product/get_product_by_category.dart';
 import 'package:onestore_app/domain/usecases/product/get_products.dart';
+import 'package:onestore_app/domain/usecases/profile/get_profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // Mock External
@@ -95,6 +96,8 @@ class MockGetProductsByCategory extends Mock implements GetProductsByCategory {}
 class MockPlaceOrder extends Mock implements PlaceOrder {}
 
 class MockGetBanners extends Mock implements GetBanners {}
+
+class MockGetProfile extends Mock implements GetProfile {}
 
 // Mock Mixins
 class MockRemoteApi with RemoteApi {}
