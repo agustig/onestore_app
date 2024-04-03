@@ -8,6 +8,7 @@ import 'package:onestore_app/data/data_sources/banner_remote_data_source.dart';
 import 'package:onestore_app/data/data_sources/category_remote_data_source.dart';
 import 'package:onestore_app/data/data_sources/order_remote_data_source.dart';
 import 'package:onestore_app/data/data_sources/product_remote_data_source.dart';
+import 'package:onestore_app/data/data_sources/profile_remote_data_source.dart';
 import 'package:onestore_app/domain/repositories/auth_repository.dart';
 import 'package:onestore_app/domain/repositories/banner_repository.dart';
 import 'package:onestore_app/domain/repositories/category_repository.dart';
@@ -50,6 +51,9 @@ class MockOrderRemoteDataSource extends Mock implements OrderRemoteDataSource {}
 
 class MockBannerRemoteDataSource extends Mock
     implements BannerRemoteDataSource {}
+
+class MockProfileRemoteDataSource extends Mock
+    implements ProfileRemoteDataSource {}
 
 // Mock Repositories
 class MockAuthRepository extends Mock implements AuthRepository {}
