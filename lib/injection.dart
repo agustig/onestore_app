@@ -6,16 +6,19 @@ import 'package:onestore_app/data/data_sources/banner_remote_data_source.dart';
 import 'package:onestore_app/data/data_sources/category_remote_data_source.dart';
 import 'package:onestore_app/data/data_sources/order_remote_data_source.dart';
 import 'package:onestore_app/data/data_sources/product_remote_data_source.dart';
+import 'package:onestore_app/data/data_sources/profile_remote_data_source.dart';
 import 'package:onestore_app/data/repositories/auth_repository_impl.dart';
 import 'package:onestore_app/data/repositories/banner_repository_impl.dart';
 import 'package:onestore_app/data/repositories/category_repository_impl.dart';
 import 'package:onestore_app/data/repositories/order_repository_impl.dart';
 import 'package:onestore_app/data/repositories/product_repository_impl.dart';
+import 'package:onestore_app/data/repositories/profile_repository_impl.dart';
 import 'package:onestore_app/domain/repositories/auth_repository.dart';
 import 'package:onestore_app/domain/repositories/banner_repository.dart';
 import 'package:onestore_app/domain/repositories/category_repository.dart';
 import 'package:onestore_app/domain/repositories/order_repository.dart';
 import 'package:onestore_app/domain/repositories/product_repository.dart';
+import 'package:onestore_app/domain/repositories/profile_repository.dart';
 import 'package:onestore_app/domain/usecases/auth/auth_get_token.dart';
 import 'package:onestore_app/domain/usecases/auth/auth_login.dart';
 import 'package:onestore_app/domain/usecases/auth/auth_logout.dart';
@@ -29,6 +32,7 @@ import 'package:onestore_app/domain/usecases/order/place_order.dart';
 import 'package:onestore_app/domain/usecases/product/get_product.dart';
 import 'package:onestore_app/domain/usecases/product/get_product_by_category.dart';
 import 'package:onestore_app/domain/usecases/product/get_products.dart';
+import 'package:onestore_app/domain/usecases/profile/get_profile.dart';
 import 'package:onestore_app/presentation/bloc/auth/auth_bloc.dart';
 import 'package:onestore_app/presentation/bloc/auth_status/auth_status_bloc.dart';
 import 'package:onestore_app/presentation/bloc/banner/banner_bloc.dart';
@@ -38,6 +42,7 @@ import 'package:onestore_app/presentation/bloc/product/product_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:onestore_app/presentation/bloc/profile/profile_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -71,6 +76,7 @@ void init() {
   );
   locator.registerFactory(() => OrderBloc(placeOrder: locator()));
   locator.registerFactory(() => BannerBloc(getBanners: locator()));
+  locator.registerFactory(() => ProfileBloc(locator()));
 
   // Usecases
   locator.registerLazySingleton(() => AuthRegister(locator()));
@@ -86,6 +92,7 @@ void init() {
   locator.registerLazySingleton(() => GetProductsByCategory(locator()));
   locator.registerLazySingleton(() => PlaceOrder(locator()));
   locator.registerLazySingleton(() => GetBanners(locator()));
+  locator.registerLazySingleton(() => GetProfile(locator()));
 
   // Repositories
   locator.registerLazySingleton<AuthRepository>(
@@ -102,6 +109,8 @@ void init() {
       () => OrderRepositoryImpl(locator()));
   locator.registerLazySingleton<BannerRepository>(
       () => BannerRepositoryImpl(locator()));
+  locator.registerLazySingleton<ProfileRepository>(
+      () => ProfileRepositoryImpl(locator()));
 
   // DataSources
   locator.registerLazySingleton<AuthRemoteDataSource>(
@@ -116,6 +125,8 @@ void init() {
       () => OrderRemoteDataSourceImpl(client: locator()));
   locator.registerLazySingleton<BannerRemoteDataSource>(
       () => BannerRemoteDataSourceImpl(client: locator()));
+  locator.registerLazySingleton<ProfileRemoteDataSource>(
+      () => ProfileRemoteDataSourceImpl(client: locator()));
 
   // External
   locator.registerLazySingleton(() => http.Client());

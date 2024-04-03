@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of '../more_page.dart';
 
 Widget moreItem(String title, {VoidCallback? onTap}) => GestureDetector(
       onTap: onTap,
